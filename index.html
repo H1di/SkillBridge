@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="SkillBridge home">
+          <div class="brand-badge">
+            <span class="material-symbols-outlined" aria-hidden="true">handshake</span>
+          </div>
+          <div class="brand-title">SkillBridge</div>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="student-how-it-works.html">How it Works</a>
+          <a href="student-opportunities.html">Projects</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="tagline">Connecting Businesses with Skilled Students</div>
+          <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
+        <a href="student-how-it-works.html">How it Works</a>
+        <a href="student-opportunities.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="split">
+    <!-- For Students -->
+    <section>
+      <div class="hero-bg" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAggqzeCOMWgODUAhq0dNd2VGrXrOIFHjPtFP446heGX7oos4JjIMYxWYf_vkrj8vCT9eNLeTxe9ovldozvLCfnEkNR3ZxBKMssBWeeyfar4Luc1cp7v3afv5baLcsUTdUDcAh76BUb531HjvBKxqp1Ky3tmHuJWIfK-xfaB7-o-HbIGXTz-uM0bPSSr-AC-Tui9jvQOd7Aafoa4IVBYBe5kf_TL0Ha_v8cv_G2z_ZjUZsaOu9YouWuozvB66tFjkjSdXZS7yFzm0A');"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero">
+        <div class="hero-inner">
+          <div class="hero-icon" aria-hidden="true">
+            <span class="material-symbols-outlined">school</span>
+          </div>
+          <h2>For Students</h2>
+          <p>Work on real projects, gain experience, and earn money in your field.</p>
+          <a class="btn btn-primary" href="student-application.html">Apply Now</a>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="big">0</span>
+              <span class="small">PROJECTS</span>
+            </div>
+            <div class="stat">
+              <span class="big">0$</span>
+              <span class="small">EARNED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- For Businesses -->
+    <section>
+      <div class="hero-bg" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAzWEObdLLeHSbHu0_SPdLs5g27FOvQ4vCDbZ5uvLHdrPnWGsERAVGtawuO2sbYDkJU-yoOaWdxkQBARCprykdjVRhW8ojnsg1clWAa5BJbPFzZNbAK3ZXM_-vWXgU3y23nq4_EBdHlCsP5JebVj4-0w_A5RlggcYikzgkqD6AhLPTFp7S6HAriRzysT7UWlz_8wCXWQkia7RpZ4C8UTMW4OQPYrZCw0gebioaVY89yMO7ZRQdnZP5yeeIjYkTWUktVFWUrLUDCQ5s');"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero">
+        <div class="hero-inner">
+          <div class="hero-icon" aria-hidden="true">
+            <span class="material-symbols-outlined">business_center</span>
+          </div>
+          <h2>For Businesses</h2>
+          <p>Affordable digital solutions for growing businesses.</p>
+          <a class="btn btn-outline" href="business-project-intake.html">Start a Project</a>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="big">0</span>
+              <span class="small">BUSINESSES</span>
+            </div>
+            <div class="stat">
+              <span class="big">0%</span>
+              <span class="small">SATISFACTION</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy"><em>Bridging Skills and Opportunity</em></div>
+        <div class="footer-icons" aria-label="Social links">
+          <a href="#" aria-label="Twitter"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+          <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
+          <a href="#" aria-label="Instagram"><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a>
+        </div>
+        <div class="footer-copy">© <span id="year"></span> SkillBridge. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
