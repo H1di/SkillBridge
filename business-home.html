@@ -3,68 +3,115 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SkillBridge | Business Home</title>
+  <title>SkillBridge | Businesses</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <style>
-    .stub{padding:72px 0 90px}
-    .stub-card{max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft);padding:34px}
-    .stub-card h1{margin:0 0 10px;font-weight:900;letter-spacing:-0.04em;font-size:42px}
-    .stub-card p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
-    .stub-links{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
-  </style>
+  
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <div class="header-inner">
         <a class="brand" href="index.html" aria-label="SkillBridge home">
-          <div class="brand-badge"><span class="material-symbols-outlined" aria-hidden="true">handshake</span></div>
+          <div class="brand-badge"><span class="material-symbols-outlined" aria-hidden="true">account_tree</span></div>
           <div class="brand-title">SkillBridge</div>
         </a>
         <nav class="nav" aria-label="Primary">
-          <a href="index.html">Home</a>
+          <a href="student-home.html">Students</a>
+          <a href="business-home.html">Businesses</a>
+          <a href="student-how-it-works.html">How it Works</a>
+          <a href="student-opportunities.html">Services</a>
           <a href="contact.html">Contact</a>
         </nav>
         <div class="header-actions">
+          <a class="btn btn-primary" href="business-project-intake.html">Start a Project</a>
           <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
         </div>
       </div>
       <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
-        <a href="index.html">Home</a>
+        <a href="student-home.html">Students</a>
+        <a href="business-home.html">Businesses</a>
+        <a href="student-how-it-works.html">How it Works</a>
+        <a href="student-opportunities.html">Services</a>
+        <a href="business-project-intake.html">Start a Project</a>
         <a href="contact.html">Contact</a>
       </div>
     </div>
   </header>
-
-  <main class="stub">
-    <div class="container">
-      <div class="stub-card">
-        <h1>Business Home</h1>
-        <p>
-          We will discuss what to put here
-        </p>
-        <div class="stub-links">
-          <a class="btn btn-primary" href="index.html">Back to landing</a>
-          <a class="btn btn-outline" href="contact.html">Contact</a>
+  
+<main class="page">
+  <div class="container">
+    <section class="banner">
+      <div class="banner-grid">
+        <div>
+          <div class="pill">Business Value Proposition</div>
+          <h1 class="hero-title">Affordable, supervised digital services for startups and SMEs that do not have agency budgets.</h1>
+          <p class="lead" style="color:rgba(236,254,255,.84)">SkillBridge gives businesses access to multilingual student teams supported by supervisors. Services include website development, UX/UI, digital marketing, automation, business support, and data-related work.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="business-project-intake.html">Start a Project</a>
+            <a class="btn btn-outline" href="contact.html">Book a Consultation</a>
+          </div>
+        </div>
+        <div class="banner-side">
+          <div class="mini-panel"><h4>Lower pricing</h4><p>SkillBridge is designed to price below the average market rate while maintaining quality through supervision.</p></div>
+          <div class="mini-panel"><h4>Service continuity</h4><p>Planned subscription packages support ongoing maintenance, digital marketing, and data management.</p></div>
         </div>
       </div>
-    </div>
-  </main>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Why businesses use SkillBridge</h2>
+      <p class="section-intro">Small businesses and startups often need digital work but cannot justify the cost of agencies or full-time hires. SkillBridge sits in the middle: more structured than freelance platforms, more affordable than agencies.</p>
+      <div class="grid-3">
+        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">language</span></div><h3>Multilingual support</h3><p>Useful for founders and growing businesses dealing with diverse teams, markets, and clients.</p></article>
+        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">verified</span></div><h3>Supervised delivery</h3><p>Projects are reviewed before delivery so clients do not just receive whatever someone finished at 2 a.m.</p></article>
+        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">savings</span></div><h3>Competitive pricing</h3><p>Structured student teams and lower operating costs make services significantly more affordable.</p></article>
+      </div>
+    </section>
+
+    <section class="section dual-panel">
+      <div class="soft-panel">
+        <h3>Platform infrastructure</h3>
+        <p>SkillBridge operates as a service-based platform. Inquiries come through the website, task management is handled in Trello, meetings happen in Zoom, files are stored in IDrive, project records are tracked through GitHub, and time is logged in Clockify.</p>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div><h4>Submit inquiry</h4><p>Describe the service required and business goals through the website contact flow.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div><h4>Estimate and team match</h4><p>Administrators review the brief, estimate the work, and assign an appropriate student team.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div><h4>Supervised production</h4><p>Students complete the work while supervisors monitor quality, revisions, and timelines.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div><h4>Delivery and support</h4><p>Final work is delivered after review, with room for small revisions and future support packages.</p></div></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>Core strengths</h3>
+        <ul class="card-list">
+          <li>Win-win ecosystem for students and businesses</li>
+          <li>Low operational costs due to remote digital model</li>
+          <li>Flexible workforce assembled by project need</li>
+          <li>Scalable model through university partnerships</li>
+          <li>Access to motivated emerging talent</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-inner">
+        <div class="footer-copy"><em>Affordable tech. Real experience. Paid learning.</em></div>
+        <div class="footer-icons" aria-label="Social links">
+          <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
+          <a href="#" aria-label="Mail"><span class="material-symbols-outlined" aria-hidden="true">mail</span></a>
+          <a href="#" aria-label="Public"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+        </div>
         <div class="footer-copy">© <span id="year"></span> SkillBridge. All rights reserved.</div>
       </div>
     </div>
   </footer>
-
   <script src="assets/js/main.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

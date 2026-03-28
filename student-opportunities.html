@@ -3,68 +3,114 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SkillBridge | Student Opportunities</title>
+  <title>SkillBridge | Services</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <style>
-    .stub{padding:72px 0 90px}
-    .stub-card{max-width:860px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-soft);padding:34px}
-    .stub-card h1{margin:0 0 10px;font-weight:900;letter-spacing:-0.04em;font-size:42px}
-    .stub-card p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
-    .stub-links{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
-  </style>
+  
 </head>
 <body>
   <header class="site-header">
     <div class="container">
       <div class="header-inner">
         <a class="brand" href="index.html" aria-label="SkillBridge home">
-          <div class="brand-badge"><span class="material-symbols-outlined" aria-hidden="true">handshake</span></div>
+          <div class="brand-badge"><span class="material-symbols-outlined" aria-hidden="true">account_tree</span></div>
           <div class="brand-title">SkillBridge</div>
         </a>
         <nav class="nav" aria-label="Primary">
-          <a href="index.html">Home</a>
+          <a href="student-home.html">Students</a>
+          <a href="business-home.html">Businesses</a>
+          <a href="student-how-it-works.html">How it Works</a>
+          <a href="student-opportunities.html">Services</a>
           <a href="contact.html">Contact</a>
         </nav>
         <div class="header-actions">
+          <a class="btn btn-primary" href="business-project-intake.html">Start a Project</a>
           <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
         </div>
       </div>
       <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
-        <a href="index.html">Home</a>
+        <a href="student-home.html">Students</a>
+        <a href="business-home.html">Businesses</a>
+        <a href="student-how-it-works.html">How it Works</a>
+        <a href="student-opportunities.html">Services</a>
+        <a href="business-project-intake.html">Start a Project</a>
         <a href="contact.html">Contact</a>
       </div>
     </div>
   </header>
+  
+<main class="page">
+  <div class="container">
+    <section class="page-hero">
+      <div class="pill">Services & Opportunities</div>
+      <h1 class="hero-title">What SkillBridge actually delivers, because every startup page eventually has to answer that.</h1>
+      <p class="lead">The platform focuses on practical digital services businesses regularly need and students can build real experience through.</p>
+    </section>
 
-  <main class="stub">
-    <div class="container">
-      <div class="stub-card">
-        <h1>Projects / Opportunities</h1>
-        <p>
-          We will discuss what to put here
-        </p>
-        <div class="stub-links">
-          <a class="btn btn-primary" href="index.html">Back to landing</a>
-          <a class="btn btn-outline" href="contact.html">Contact</a>
-        </div>
+    <section class="section">
+      <div class="grid-3">
+        <article class="service-card"><h3>Website Development</h3><p>Landing pages, small business websites, updates, maintenance, and structured delivery for clients who need a digital presence fast.</p></article>
+        <article class="service-card"><h3>UX / UI Design</h3><p>Interface planning, layout design, user experience improvements, and Figma-based design tasks.</p></article>
+        <article class="service-card"><h3>Digital Marketing</h3><p>Social media setup, content support, management packages, and visibility-focused campaigns.</p></article>
+        <article class="service-card"><h3>Data & Automation</h3><p>Simple automation work, process support, business data tasks, and efficiency improvements.</p></article>
+        <article class="service-card"><h3>Creative Media</h3><p>Video edits, content assets, and supporting digital materials for business communication.</p></article>
+        <article class="service-card"><h3>Business Support</h3><p>Flexible student teams for structured digital support across startup operations.</p></article>
       </div>
-    </div>
-  </main>
+    </section>
+
+    <section class="section dual-panel">
+      <div class="info-card">
+        <h3>Market opportunity</h3>
+        <ul class="card-list">
+          <li>Many SMEs still lack a digital presence or active online activity.</li>
+          <li>New firms are formed constantly, creating steady demand for affordable digital support.</li>
+          <li>The global IT market is growing, which increases the long-term demand for digital services.</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Competitor position</h3>
+        <ul class="card-list">
+          <li>More structured and supervised than freelance platforms</li>
+          <li>More affordable than traditional agencies</li>
+          <li>More accessible than limited internship pipelines</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Example growth path</h2>
+      <table class="pricing-table">
+        <thead>
+          <tr><th>Phase</th><th>What expands</th><th>Why it matters</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Launch</td><td>Landing pages, SEO audits, social setups, video edits</td><td>Fast, lower-complexity services create early traction and references.</td></tr>
+          <tr><td>Growth</td><td>Ongoing social management and maintenance packages</td><td>Recurring work improves retention and revenue stability.</td></tr>
+          <tr><td>Scale</td><td>Automated pricing, AI matching, wider university network</td><td>Higher efficiency without relying only on manual coordination.</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+</main>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-inner">
+        <div class="footer-copy"><em>Affordable tech. Real experience. Paid learning.</em></div>
+        <div class="footer-icons" aria-label="Social links">
+          <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
+          <a href="#" aria-label="Mail"><span class="material-symbols-outlined" aria-hidden="true">mail</span></a>
+          <a href="#" aria-label="Public"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+        </div>
         <div class="footer-copy">© <span id="year"></span> SkillBridge. All rights reserved.</div>
       </div>
     </div>
   </footer>
-
   <script src="assets/js/main.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
