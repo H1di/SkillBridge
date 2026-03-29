@@ -9,17 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
-  
 </head>
 <body>
+
   <header class="site-header">
     <div class="container">
       <div class="header-inner">
         <a class="brand" href="index.html" aria-label="SkillBridge home">
-          <div class="brand-badge"><span class="material-symbols-outlined" aria-hidden="true">account_tree</span></div>
+          <div class="brand-badge"><span class="material-symbols-outlined" aria-hidden="true">handshake</span></div>
           <div class="brand-title">SkillBridge</div>
         </a>
         <nav class="nav" aria-label="Primary">
+          <a href="index.html">Home</a>
           <a href="student-home.html">Students</a>
           <a href="business-home.html">Businesses</a>
           <a href="student-how-it-works.html">How it Works</a>
@@ -27,86 +28,97 @@
           <a href="contact.html">Contact</a>
         </nav>
         <div class="header-actions">
-          <a class="btn btn-primary" href="business-project-intake.html">Start a Project</a>
           <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
             <span></span><span></span><span></span>
           </button>
         </div>
       </div>
       <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
+        <a href="index.html">Home</a>
         <a href="student-home.html">Students</a>
         <a href="business-home.html">Businesses</a>
         <a href="student-how-it-works.html">How it Works</a>
         <a href="student-opportunities.html">Services</a>
-        <a href="business-project-intake.html">Start a Project</a>
         <a href="contact.html">Contact</a>
       </div>
     </div>
   </header>
-  
-<main class="page">
-  <div class="container">
-    <section class="banner">
-      <div class="banner-grid">
-        <div>
-          <div class="pill">Business Value Proposition</div>
-          <h1 class="hero-title">Affordable, supervised digital services for startups and SMEs that do not have agency budgets.</h1>
-          <p class="lead" style="color:rgba(236,254,255,.84)">SkillBridge gives businesses access to multilingual student teams supported by supervisors. Services include website development, UX/UI, digital marketing, automation, business support, and data-related work.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="business-project-intake.html">Start a Project</a>
-            <a class="btn btn-outline" href="contact.html">Book a Consultation</a>
+
+
+  <main class="page">
+    <div class="container">
+      <section class="banner">
+        <div class="banner-grid">
+          <div>
+            <div class="pill">Business Value Proposition</div>
+            <h1 class="hero-title">Affordable digital support without agency pricing and without freelance roulette.</h1>
+            <p class="lead">SkillBridge connects startups, entrepreneurs, and SMEs with supervised student teams that deliver website development, UX/UI design, digital marketing, automation, and business support at lower cost.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="business-project-intake.html">Start a Project</a>
+              <a class="btn btn-outline" href="contact.html">Contact the Team</a>
+            </div>
+          </div>
+          <div class="banner-side">
+            <div class="mini-panel"><h4>Lower operational costs</h4><p>The platform runs digitally with student teams working remotely, helping SkillBridge stay lean and price competitively.</p></div>
+            <div class="mini-panel"><h4>Supervised quality</h4><p>Founders and supervisors review work before delivery, so businesses do not receive unchecked output.</p></div>
           </div>
         </div>
-        <div class="banner-side">
-          <div class="mini-panel"><h4>Lower pricing</h4><p>SkillBridge is designed to price below the average market rate while maintaining quality through supervision.</p></div>
-          <div class="mini-panel"><h4>Service continuity</h4><p>Planned subscription packages support ongoing maintenance, digital marketing, and data management.</p></div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section">
-      <h2 class="section-title">Why businesses use SkillBridge</h2>
-      <p class="section-intro">Small businesses and startups often need digital work but cannot justify the cost of agencies or full-time hires. SkillBridge sits in the middle: more structured than freelance platforms, more affordable than agencies.</p>
-      <div class="grid-3">
-        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">language</span></div><h3>Multilingual support</h3><p>Useful for founders and growing businesses dealing with diverse teams, markets, and clients.</p></article>
-        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">verified</span></div><h3>Supervised delivery</h3><p>Projects are reviewed before delivery so clients do not just receive whatever someone finished at 2 a.m.</p></article>
-        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">savings</span></div><h3>Competitive pricing</h3><p>Structured student teams and lower operating costs make services significantly more affordable.</p></article>
-      </div>
-    </section>
-
-    <section class="section dual-panel">
-      <div class="soft-panel">
-        <h3>Platform infrastructure</h3>
-        <p>SkillBridge operates as a service-based platform. Inquiries come through the website, task management is handled in Trello, meetings happen in Zoom, files are stored in IDrive, project records are tracked through GitHub, and time is logged in Clockify.</p>
-        <div class="steps">
-          <div class="step"><div class="step-num">1</div><div><h4>Submit inquiry</h4><p>Describe the service required and business goals through the website contact flow.</p></div></div>
-          <div class="step"><div class="step-num">2</div><div><h4>Estimate and team match</h4><p>Administrators review the brief, estimate the work, and assign an appropriate student team.</p></div></div>
-          <div class="step"><div class="step-num">3</div><div><h4>Supervised production</h4><p>Students complete the work while supervisors monitor quality, revisions, and timelines.</p></div></div>
-          <div class="step"><div class="step-num">4</div><div><h4>Delivery and support</h4><p>Final work is delivered after review, with room for small revisions and future support packages.</p></div></div>
+      <section class="section">
+        <div class="grid-3">
+          <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">language</span></div><h3>Multilingual support</h3><p>Businesses can access flexible teams able to support different markets and communication needs.</p></article>
+          <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">stacked_line_chart</span></div><h3>Below-market pricing</h3><p>SkillBridge positions itself as roughly 50-70% more affordable than traditional digital agencies.</p></article>
+          <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">groups</span></div><h3>Structured delivery</h3><p>Instead of random one-person outsourcing, projects are handled through teams, supervision, and progress tracking.</p></article>
         </div>
-      </div>
-      <div class="info-card">
-        <h3>Core strengths</h3>
-        <ul class="card-list">
-          <li>Win-win ecosystem for students and businesses</li>
-          <li>Low operational costs due to remote digital model</li>
-          <li>Flexible workforce assembled by project need</li>
-          <li>Scalable model through university partnerships</li>
-          <li>Access to motivated emerging talent</li>
-        </ul>
-      </div>
-    </section>
-  </div>
-</main>
+      </section>
+
+      <section class="section dual-panel">
+        <div class="soft-panel">
+          <h3>Market opportunity</h3>
+          <p>Many small businesses and startups need websites, design, marketing, and data support but do not have the budget for agencies or full-time hires. SkillBridge sits directly in that gap between affordability and reliable supervision.</p>
+          <div class="kpi-strip">
+            <div class="kpi"><strong>99.27%</strong><span>of businesses in the cited Indian market are SMEs</span></div>
+            <div class="kpi"><strong>1.6%</strong><span>own a website in that same market sample</span></div>
+            <div class="kpi"><strong>1%</strong><span>maintain active online presence</span></div>
+            <div class="kpi"><strong>50M</strong><span>new firms created globally each year</span></div>
+          </div>
+        </div>
+        <div class="info-card">
+          <h3>What businesses get</h3>
+          <ul class="card-list">
+            <li>Affordable website development and maintenance from €300</li>
+            <li>UX/UI design and creative media support from €80-€550</li>
+            <li>Digital marketing and social setup services from €120, or €250-€450 monthly</li>
+            <li>Automation and other project-based digital work from €250</li>
+            <li>Regular communication, revisions, and long-term support options included in final quoting</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Indicative price ranges</h2>
+        <div class="price-grid">
+          <article class="price-card"><h4>Landing pages</h4><p>Fast web presence for startups and small businesses.</p><div class="price-range">€300-€450</div></article>
+          <article class="price-card"><h4>SEO audits</h4><p>Entry-level review with action points.</p><div class="price-range">€120-€200</div></article>
+          <article class="price-card"><h4>Social setups</h4><p>Account setup and optimisation.</p><div class="price-range">€150-€250</div></article>
+          <article class="price-card"><h4>Video edits</h4><p>Short promotional or social edits.</p><div class="price-range">€80-€150</div></article>
+          <article class="price-card"><h4>Social management</h4><p>Monthly support package.</p><div class="price-range">€250-€450 / month</div></article>
+          <article class="price-card"><h4>Custom builds and automation</h4><p>Larger projects quoted by scope.</p><div class="price-range">€250-€900+</div></article>
+        </div>
+      </section>
+    </div>
+  </main>
+
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-inner">
-        <div class="footer-copy"><em>Affordable tech. Real experience. Paid learning.</em></div>
+        <div class="footer-copy"><em>Bridging Skills and Opportunity</em></div>
         <div class="footer-icons" aria-label="Social links">
+          <a href="#" aria-label="Twitter"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
           <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
-          <a href="#" aria-label="Mail"><span class="material-symbols-outlined" aria-hidden="true">mail</span></a>
-          <a href="#" aria-label="Public"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+          <a href="#" aria-label="Instagram"><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a>
         </div>
         <div class="footer-copy">© <span id="year"></span> SkillBridge. All rights reserved.</div>
       </div>
@@ -114,5 +126,6 @@
   </footer>
   <script src="assets/js/main.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
 </body>
 </html>

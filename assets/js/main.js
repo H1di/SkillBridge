@@ -1,3 +1,4 @@
+/* Tiny JS for navigation + contact form UX. */
 
 (function(){
   const drawer = document.querySelector('[data-mobile-drawer]');
@@ -11,6 +12,7 @@
     });
   }
 
+  // Contact form: simple validation + fake submit.
   const form = document.querySelector('[data-contact-form]');
   const toast = document.querySelector('[data-toast]');
 
@@ -22,14 +24,16 @@
     showToast._t = window.setTimeout(() => toast.classList.remove('show'), 3200);
   }
 
-  function setInvalid(el){
+  function setInvalid(el, msg){
     el.setAttribute('aria-invalid', 'true');
+    el.dataset.error = msg;
     el.style.borderColor = 'rgba(239,68,68,0.9)';
     el.style.boxShadow = '0 0 0 6px rgba(239,68,68,0.12)';
   }
 
   function clearInvalid(el){
     el.removeAttribute('aria-invalid');
+    delete el.dataset.error;
     el.style.borderColor = '';
     el.style.boxShadow = '';
   }
@@ -48,27 +52,35 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
       let ok = true;
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (name && name.value.trim().length < 2){ ok=false; setInvalid(name); }
-      if (email && !emailRe.test(email.value.trim())){ ok=false; setInvalid(email); }
-      if (purpose && !purpose.value){ ok=false; setInvalid(purpose); }
-      if (message && message.value.trim().length < 10){ ok=false; setInvalid(message); }
+      if (name && name.value.trim().length < 2){ ok=false; setInvalid(name, 'Enter your full name.'); }
+      if (email && !emailRe.test(email.value.trim())){ ok=false; setInvalid(email, 'Enter a valid email.'); }
+      if (purpose && !purpose.value){ ok=false; setInvalid(purpose, 'Pick a purpose.'); }
+      if (message && message.value.trim().length < 10){ ok=false; setInvalid(message, 'Give us a bit more detail.'); }
 
       if (!ok){
-        showToast('Please complete the highlighted fields.');
+        showToast('Fix the highlighted fields. Humans love typos, servers do not.');
         return;
       }
 
+      // Fake "send".
       const btn = form.querySelector('button[type="submit"]');
-      const prev = btn ? btn.innerHTML : '';
-      if (btn){ btn.disabled = true; btn.textContent = 'Sending…'; }
+      const prev = btn ? btn.textContent : '';
+      if (btn){
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+      }
 
       window.setTimeout(() => {
-        if (btn){ btn.disabled = false; btn.innerHTML = prev; }
+        if (btn){
+          btn.disabled = false;
+          btn.textContent = prev;
+        }
         form.reset();
-        showToast('Your message has been recorded in this demo form.');
+        showToast('Message queued (pretend). Wire it to your backend when you feel ambitious.');
       }, 900);
     });
   }
