@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    :root { --green: #2ecc71; }
+
+    #sb-nav {
+      position: sticky; top: 0; z-index: 100;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0,0,0,0.09);
+      font-family: 'DM Sans', sans-serif;
+    }
+    #sb-nav .sb-nav-logo { display: flex; align-items: center; gap: 6px; }
+    #sb-nav .sb-nav-icon { border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+    #sb-nav .sb-nav-links {
+      display: flex; gap: 28px; list-style: none;
+      align-items: center; margin: 0; padding: 0;
+    }
+    #sb-nav .sb-nav-links a {
+      text-decoration: none; font-size: 14px; font-weight: 500;
+      color: #444; transition: color .2s;
+    }
+    #sb-nav .sb-nav-links a:hover { color: var(--green); }
+    #sb-nav .sb-nav-links a.active { color: var(--green); font-weight: 600; }
+    #sb-nav .sb-nav-dropdown { position: relative; }
+    #sb-nav .sb-nav-dropdown-toggle {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 14px; font-weight: 500; color: #444;
+      cursor: pointer; transition: color .2s;
+      background: none; border: none;
+      font-family: 'DM Sans', sans-serif; padding: 0;
+    }
+    #sb-nav .sb-nav-dropdown-toggle.active { color: var(--green); font-weight: 600; }
+    #sb-nav .sb-nav-dropdown-toggle:hover { color: var(--green); }
+    #sb-nav .sb-nav-dropdown-toggle svg {
+      width: 12px; height: 12px; stroke: currentColor;
+      fill: none; stroke-width: 2.5; transition: transform .2s;
+    }
+    #sb-nav .sb-nav-dropdown-toggle.open svg { transform: rotate(180deg); }
+    #sb-nav .sb-dropdown-menu {
+      display: none;
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%);
+      background: white; border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 10px; padding: 6px 0; min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 200;
+    }
+    #sb-nav .sb-dropdown-menu.open { display: block; }
+    #sb-nav .sb-dropdown-menu li { list-style: none; }
+    #sb-nav .sb-dropdown-menu a {
+      display: block; padding: 9px 16px;
+      font-size: 14px; font-weight: 500; color: #444;
+      text-decoration: none; transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    #sb-nav .sb-dropdown-menu a:hover { background: #f5fdf8; color: var(--green); }
+    #sb-nav .sb-dropdown-menu a.active { color: var(--green); font-weight: 600; }
+    #sb-nav .sb-nav-cta {
+      background: var(--green); color: #fff;
+      border: none; padding: 7px 18px; border-radius: 20px;
+      font-size: 12px; font-weight: 700; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none; display: inline-flex; align-items: center;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(19, 236, 164, 0.16), transparent 26%),
+        radial-gradient(circle at top right, rgba(15, 23, 42, 0.08), transparent 22%),
+        linear-gradient(180deg, #f8fcfa 0%, #f6f8f7 46%, #edf7f1 100%);
+      color: #0f172a;
+    }
+
+    #sb-nav {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .page {
+      padding: 34px 0 52px;
+    }
+
+    .marketing-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 44px 42px 38px;
+      border-radius: 34px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: linear-gradient(135deg, #0f172a 0%, #123c2f 38%, #f4fbf7 100%);
+      box-shadow: 0 30px 62px rgba(15, 23, 42, 0.16);
+    }
+
+    .marketing-hero::before,
+    .marketing-hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .marketing-hero::before {
+      width: 360px;
+      height: 360px;
+      top: -130px;
+      right: -90px;
+      background: rgba(19, 236, 164, 0.18);
+    }
+
+    .marketing-hero::after {
+      width: 260px;
+      height: 260px;
+      bottom: -150px;
+      left: 46%;
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .marketing-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(280px, 0.9fr);
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .marketing-hero .pill {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #d7fff1;
+    }
+
+    .marketing-hero .hero-title {
+      max-width: 760px;
+      color: #ffffff;
+    }
+
+    .marketing-hero .lead {
+      max-width: 680px;
+      margin-bottom: 28px;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-notes {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 620px;
+    }
+
+    .hero-note {
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 8px;
+      font-family: 'Sora', sans-serif;
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    .hero-note span {
+      display: block;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .hero-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 18px 38px rgba(15, 23, 42, 0.14);
+    }
+
+    .hero-panel h3 {
+      margin: 0;
+      font-size: 22px;
+      color: #ffffff;
+    }
+
+    .hero-panel p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.7;
+    }
+
+    .metric-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metric-chip {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .metric-chip strong {
+      font-family: 'Sora', sans-serif;
+      font-size: 20px;
+      color: #ffffff;
+    }
+
+    .metric-chip span {
+      font-size: 14px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.82);
+      text-align: right;
+    }
+
+    .section {
+      padding-top: 34px;
+    }
+
+    .benefit-card,
+    .story-card,
+    .compare-panel,
+    .cta-band {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 252, 249, 0.98) 100%);
+      box-shadow: 0 22px 46px rgba(15, 23, 42, 0.08);
+    }
+
+    .benefit-card {
+      height: 100%;
+      padding: 28px 24px;
+      border-radius: 28px;
+    }
+
+    .benefit-card::before,
+    .story-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 5px;
+      background: linear-gradient(90deg, #13eca4 0%, #0f172a 100%);
+    }
+
+    .benefit-card .icon-badge {
+      width: 58px;
+      height: 58px;
+      margin-bottom: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(19, 236, 164, 0.2) 0%, rgba(19, 236, 164, 0.08) 100%);
+      box-shadow: 0 16px 30px rgba(19, 236, 164, 0.12);
+    }
+
+    .benefit-card h3,
+    .story-card h3,
+    .compare-panel h3,
+    .cta-band h3 {
+      margin-bottom: 12px;
+      font-size: 24px;
+      color: #0f172a;
+    }
+
+    .benefit-card p,
+    .story-card p,
+    .compare-panel p,
+    .cta-band p {
+      color: #475569;
+      line-height: 1.75;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .story-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 28px;
+    }
+
+    .story-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .story-card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 14px;
+      padding: 24px;
+    }
+
+    .story-quote {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px;
+      line-height: 1.35;
+      color: #0f8f68;
+    }
+
+    .story-credit {
+      margin-top: auto;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .service-map {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .service-pill {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.05);
+    }
+
+    .service-pill .material-symbols-outlined {
+      color: #0f8f68;
+    }
+
+    .service-pill strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #0f172a;
+    }
+
+    .service-pill span {
+      display: block;
+      color: #475569;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .compare-panel {
+      padding: 28px 24px 24px;
+      border-radius: 30px;
+    }
+
+    .compare-panel.skillbridge {
+      border-color: rgba(19, 236, 164, 0.18);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(241, 252, 245, 0.98) 100%);
+    }
+
+    .compare-panel.freelance {
+      border-color: rgba(248, 113, 113, 0.14);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 248, 248, 0.98) 100%);
+    }
+
+    .compare-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      font-family: 'Sora', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .skillbridge .compare-badge {
+      background: rgba(19, 236, 164, 0.14);
+      color: #146c43;
+    }
+
+    .freelance .compare-badge {
+      background: rgba(248, 113, 113, 0.12);
+      color: #9f1239;
+    }
+
+    .compare-list {
+      display: grid;
+      gap: 14px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .compare-list li {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      background: rgba(255, 255, 255, 0.92);
+      color: #1e293b;
+      line-height: 1.6;
+    }
+
+    .cta-band {
+      padding: 30px 28px;
+      border-radius: 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .cta-band .btn {
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 980px) {
+      #sb-nav {
+        padding: 0 22px;
+      }
+
+      .marketing-hero {
+        padding: 34px 28px 30px;
+      }
+
+      .hero-layout,
+      .story-grid,
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 860px) {
+      #sb-nav .sb-nav-links {
+        display: none;
+      }
+
+      .service-map,
+      .hero-notes {
+        grid-template-columns: 1fr;
+      }
+
+      .marketing-hero {
+        padding: 28px 22px 24px;
+        border-radius: 28px;
+      }
+
+      .cta-band {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="sb-nav">
+  <div class="sb-nav-logo">
+    <div class="sb-nav-icon">
+      <a href="index.html">
+        <img src="assets/images/Split Panel (Page-0) (1).png" alt="SkillBridge" style="width:75px;height:75px;aspect-ratio:1/1;">
+      </a>
+    </div>
+  </div>
+  <ul class="sb-nav-links">
+    <li><a href="business-homeb.html">Home</a></li>
+    <li><a href="servicesb.html">Services</a></li>
+    <li><a href="marketingsb.html" class="active">Marketing</a></li>
+    <li><a href="how-it-worksb.html">How It Works</a></li>
+    <li class="sb-nav-dropdown">
+      <button class="sb-nav-dropdown-toggle" type="button">
+        Details
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <ul class="sb-dropdown-menu">
+        <li><a href="contributionb.html">Contribution</a></li>
+        <li><a href="detailsb.html">More Details</a></li>
+      </ul>
+    </li>
+  </ul>
+  <button class="sb-nav-cta" type="button" onclick="location.href='contact.html'">Contact us</button>
+</nav>
+
+<main class="page">
+  <div class="container">
+    <section class="marketing-hero">
+      <div class="hero-layout">
+        <div>
+          <div class="pill">Growth Marketing Support</div>
+          <h1 class="hero-title">Marketing execution for startups and SMEs that need traction before they need a big agency.</h1>
+          <p class="lead">SkillBridge helps businesses turn scattered ideas into campaigns, content, and launch assets that actually move. You get supervised student teams, tighter budgets, and delivery shaped around real business goals.</p>
+          <div class="hero-notes">
+            <div class="hero-note">
+              <strong>Built for lean teams</strong>
+              <span>Support for founders and small teams that need visible output without building a full in-house marketing department.</span>
+            </div>
+            <div class="hero-note">
+              <strong>Delivered with supervision</strong>
+              <span>Student execution is reviewed before handoff, so businesses are not left cleaning up unsupervised work.</span>
+            </div>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <div>
+            <h3>What this page covers</h3>
+            <p>The business marketing side of SkillBridge focuses on practical launch support, visibility work, and content production that fits startup timelines.</p>
+          </div>
+          <div class="metric-stack">
+            <div class="metric-chip">
+              <strong>50-70%</strong>
+              <span>lower cost positioning than traditional agencies</span>
+            </div>
+            <div class="metric-chip">
+              <strong>Remote first</strong>
+              <span>campaign and content support that can move quickly across time zones</span>
+            </div>
+            <div class="metric-chip">
+              <strong>Flexible scope</strong>
+              <span>from one-off launch help to recurring monthly support</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Why Businesses Choose SkillBridge Marketing</h2>
+      <div class="grid-3">
+        <article class="benefit-card">
+          <div class="icon-badge"><span class="material-symbols-outlined">rocket_launch</span></div>
+          <h3>Scalable support</h3>
+          <p>Take on more launch activity without hiring a full in-house team. SkillBridge gives growing businesses flexible campaign support that can expand with demand.</p>
+        </article>
+        <article class="benefit-card">
+          <div class="icon-badge"><span class="material-symbols-outlined">savings</span></div>
+          <h3>Lower cost, real output</h3>
+          <p>Businesses get quality work at a cost level designed for startups, founders, and smaller operators who still need polished campaigns and content.</p>
+        </article>
+        <article class="benefit-card">
+          <div class="icon-badge"><span class="material-symbols-outlined">bolt</span></div>
+          <h3>Fast delivery</h3>
+          <p>Landing assets, campaign materials, and content support are set up to move fast so businesses can launch without long agency timelines.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dual-panel">
+      <div class="soft-panel">
+        <h3>What businesses can hand over</h3>
+        <p>Marketing support is meant to remove the busywork that slows down founders. Instead of trying to manage every channel alone, businesses can hand over clear chunks of growth work.</p>
+        <div class="service-map">
+          <div class="service-pill">
+            <span class="material-symbols-outlined" aria-hidden="true">ads_click</span>
+            <div>
+              <strong>Launch campaigns</strong>
+              <span>Campaign planning, offer positioning, and launch-page support for startup releases and promotions.</span>
+            </div>
+          </div>
+          <div class="service-pill">
+            <span class="material-symbols-outlined" aria-hidden="true">edit_square</span>
+            <div>
+              <strong>Content production</strong>
+              <span>Copy, social content, and creative assets that give businesses a cleaner outward presence.</span>
+            </div>
+          </div>
+          <div class="service-pill">
+            <span class="material-symbols-outlined" aria-hidden="true">query_stats</span>
+            <div>
+              <strong>SEO and visibility</strong>
+              <span>Entry-level audits, cleanup tasks, and growth support built around getting found more easily online.</span>
+            </div>
+          </div>
+          <div class="service-pill">
+            <span class="material-symbols-outlined" aria-hidden="true">calendar_month</span>
+            <div>
+              <strong>Monthly marketing support</strong>
+              <span>Recurring help for teams that need consistency but are not ready for expensive retainers.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>How the work lands better</h3>
+        <ul class="card-list">
+          <li>Founders stay focused on the business while campaign tasks are broken into clear deliverables.</li>
+          <li>Student teams work remotely, which keeps operations lean and budgets more realistic.</li>
+          <li>Supervision adds quality control before the final handoff reaches the client.</li>
+          <li>Projects can start small and grow into larger support packages once the business sees traction.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Business Stories</h2>
+      <div class="story-grid">
+        <article class="story-card">
+          <img src="assets/images/christina-wocintechchat-com-m-0Zx1bDv5BNY-unsplash.jpg" alt="Founder working at a laptop" />
+          <div class="story-card-body">
+            <div class="story-quote">"Say goodbye to budget-breaking marketing prices."</div>
+            <p>SkillBridge gave this startup a way to keep launching campaigns without paying agency-level prices for every update and asset.</p>
+            <div class="story-credit">Robin N, Founder of Aerchio</div>
+          </div>
+        </article>
+        <article class="story-card">
+          <img src="assets/images/bruce-mars-xj8qrWvuOEs-unsplash.jpg" alt="Business owner reviewing deliverables" />
+          <div class="story-card-body">
+            <div class="story-quote">"Premium quality I can trust."</div>
+            <p>Clear supervision and review gave the client confidence that the delivered marketing work would be polished before it went live.</p>
+            <div class="story-credit">Zoro R, Founder of HunterTech</div>
+          </div>
+        </article>
+        <article class="story-card">
+          <img src="assets/images/matthew-reyes--C-jTjc0g7I-unsplash.jpg" alt="Team collaboration session" />
+          <div class="story-card-body">
+            <div class="story-quote">"Now I can explain in my language anywhere."</div>
+            <p>Multilingual support made it easier for the client to communicate goals and get marketing assets shaped around the market they actually serve.</p>
+            <div class="story-credit">Luffy D, Founder of Strawhats</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">SkillBridge vs Freelance Roulette</h2>
+      <div class="compare-grid">
+        <article class="compare-panel skillbridge">
+          <div class="compare-badge">SkillBridge</div>
+          <h3>Built for dependable delivery</h3>
+          <ul class="compare-list">
+            <li>Lower cost structure designed for startup budgets</li>
+            <li>Supervised teams instead of one unsupervised contractor</li>
+            <li>Multiple skills available across content, campaigns, and launch assets</li>
+            <li>Clearer continuity if the work needs to keep going after the first sprint</li>
+          </ul>
+        </article>
+        <article class="compare-panel freelance">
+          <div class="compare-badge">Freelance</div>
+          <h3>Often harder to scale safely</h3>
+          <ul class="compare-list">
+            <li>Pricing can jump fast once scope expands beyond one simple task</li>
+            <li>Delivery depends heavily on one person staying available</li>
+            <li>Handoffs, revisions, and broader support can become fragmented</li>
+            <li>Businesses often spend more time coordinating than they expected</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta-band">
+        <div>
+          <h3>Need launch support, content help, or a cleaner marketing setup?</h3>
+          <p>Talk to SkillBridge about a practical scope first. We can start with a smaller piece of work and build from there.</p>
+        </div>
+        <a class="btn btn-primary" href="contact.html">Talk to the Team</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy"><em>Bridging Skills and Opportunity</em></div>
+      <div class="footer-icons" aria-label="Social links">
+        <a href="#" aria-label="Twitter"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+        <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
+        <a href="#" aria-label="Instagram"><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a>
+      </div>
+      <div class="footer-copy">&copy; <span id="year"></span> SkillBridge. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+  (function () {
+    var toggle = document.querySelector('#sb-nav .sb-nav-dropdown-toggle');
+    var menu = document.querySelector('#sb-nav .sb-dropdown-menu');
+    if (!toggle || !menu) return;
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function () {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    });
+    menu.addEventListener('click', function (e) { e.stopPropagation(); });
+  })();
+</script>
+</body>
+</html>
