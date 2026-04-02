@@ -4,8 +4,16 @@
   const isLocalHost =
     window.location.protocol === 'file:' ||
     /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname);
+  const isGitHubPagesHost = /\.github\.io$/i.test(window.location.hostname);
   const preferredServerOrigin =
     window.location.hostname === 'localhost' ? 'http://localhost:8000' : 'http://127.0.0.1:8000';
+  const configuredHostedOrigin = String(
+    window.SKILLBRIDGE_APP_ORIGIN ||
+      (document.querySelector('meta[name="skillbridge-app-origin"]') || {}).content ||
+      ''
+  )
+    .trim()
+    .replace(/\/+$/, '');
   const needsServerBridge =
     window.location.protocol === 'file:' ||
     (window.location.protocol.startsWith('http') &&
@@ -113,7 +121,21 @@
     if (needsServerBridge) {
       return preferredServerOrigin + '/' + String(path || '').replace(/^\//, '');
     }
+    if (configuredHostedOrigin) {
+      return configuredHostedOrigin + '/' + String(path || '').replace(/^\//, '');
+    }
     return path;
+  }
+
+  function pageNeedsBackend(path) {
+    return /(register|login|profile|contact)\.html$/i.test(path || '');
+  }
+
+  function missingBackendMessage() {
+    if (isGitHubPagesHost && !configuredHostedOrigin) {
+      return 'This GitHub Pages site is static. Account creation, log in, contact forms, and profile updates need the deployed backend URL.';
+    }
+    return 'SkillBridge server is not running. Start it with: python3 server.py';
   }
 
   function showRuntimeBanner(message) {
@@ -153,6 +175,28 @@
 
   async function ensureServerContext() {
     if (!needsServerBridge) {
+      if (isGitHubPagesHost) {
+        const activePath = currentPagePath();
+        if (configuredHostedOrigin && pageNeedsBackend(activePath)) {
+          window.location.replace(pageHref(activePath) + window.location.search + window.location.hash);
+          return false;
+        }
+
+        if (!configuredHostedOrigin && pageNeedsBackend(activePath)) {
+          state.backendReady = false;
+          showRuntimeBanner(
+            [
+              '<strong>Backend required for this page.</strong>',
+              '<span>This GitHub Pages site is static, so account creation, log in, contact forms, and profile updates cannot run here.</span>',
+              '<span>Open the deployed app URL instead, or configure </span>',
+              '<code>window.SKILLBRIDGE_APP_ORIGIN</code>',
+              '<span> to point these pages at your live backend.</span>',
+            ].join(' ')
+          );
+          return true;
+        }
+      }
+
       state.backendReady = true;
       return true;
     }
@@ -415,7 +459,7 @@
 
   async function apiRequest(url, options) {
     if (!state.backendReady) {
-      throw new Error('SkillBridge server is not running. Start it with: python3 server.py');
+      throw new Error(missingBackendMessage());
     }
 
     const config = Object.assign(
