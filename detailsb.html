@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillBridge â€“ Details</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green: #2ecc71;
+      --green-dark: #27ae60;
+      --dark: #0d0d0d;
+      --white: #ffffff;
+      --muted: #666;
+      --border: rgba(0, 0, 0, 0.09);
+      --card-bg: #ffffff;
+      --nav-h: var(--site-header-height);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f7f9f7;
+      color: var(--dark);
+      font-size: 17px;
+    }
+
+    /* â”€â”€ NAVBAR â”€â”€ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-icon {
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2.2;
+    }
+
+    .nav-brand {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--dark);
+    }
+
+    .nav-brand span {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #444;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-links a.active {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    /* â”€â”€ DROPDOWN â”€â”€ */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: #444;
+      cursor: pointer;
+      transition: color .2s;
+      background: none;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      padding: 0;
+    }
+
+    .nav-dropdown-toggle.active {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .nav-dropdown-toggle:hover {
+      color: var(--green);
+    }
+
+    .nav-dropdown-toggle svg {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.5;
+      transition: transform .2s;
+    }
+
+    .nav-dropdown-toggle.open svg {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px 0;
+      min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      z-index: 200;
+    }
+
+    .dropdown-menu.open {
+      display: block;
+    }
+
+    .dropdown-menu li {
+      list-style: none;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 9px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #444;
+      text-decoration: none;
+      transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f5fdf8;
+      color: var(--green);
+    }
+
+    .dropdown-menu a.active {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .nav-cta {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 7px 18px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+
+    /* â”€â”€ HERO â”€â”€ */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 40px 40px;
+      min-height: calc(78vh - var(--nav-h));
+    }
+
+    .hero-left {
+      flex: 1;
+      align-self: flex-start;
+      padding-top: 100px;
+    }
+
+    .hero-left h1 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(46px, 5.8vw, 74px);
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--dark);
+    }
+
+    .hero-left h1 .green {
+      color: var(--green);
+    }
+
+    .hero-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-self: flex-start;
+      padding-top: 100px;
+    }
+
+    .hero-img {
+      width: clamp(220px, 36vw, 400px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-img img {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+    }
+
+    /* â”€â”€ SECTION â”€â”€ */
+    .section {
+      padding: 60px 40px;
+      font-size: 1.5em;
+    }
+
+    .section-heading {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(24px, 2.8vw, 38px);
+      font-weight: 800;
+      margin-bottom: 28px;
+      color: var(--dark);
+    }
+
+    .section-heading .green {
+      color: var(--green);
+    }
+
+    /* â”€â”€ UVP â”€â”€ */
+    .uvp-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 56px;
+      align-items: stretch;
+    }
+
+    .uvp-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 252, 247, 0.98) 100%);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.1);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .uvp-card:nth-child(2) {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 249, 255, 0.98) 100%);
+    }
+
+    .uvp-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg, #13eca4 0%, #0f8f68 100%);
+    }
+
+    .uvp-card:nth-child(2)::before {
+      background: linear-gradient(90deg, #0f172a 0%, #2ecc71 100%);
+    }
+
+    .uvp-card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      top: -74px;
+      right: -48px;
+      border-radius: 50%;
+      background: rgba(19, 236, 164, 0.08);
+      pointer-events: none;
+    }
+
+    .uvp-card:nth-child(2)::after {
+      background: rgba(15, 23, 42, 0.06);
+    }
+
+    .uvp-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.14);
+    }
+
+    /* â”€â”€ UVP IMAGE PLACEHOLDER â”€â”€ */
+    .uvp-img {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 18px 32px rgba(15, 23, 42, 0.14);
+    }
+
+    .uvp-img::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0.28) 100%);
+      pointer-events: none;
+    }
+
+    .uvp-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+
+    .uvp-card:hover .uvp-img img {
+      transform: scale(1.05);
+    }
+
+    .uvp-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8f8f0, #d0f0e0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #a0c8b0;
+    }
+
+    .uvp-card:last-child .uvp-img-placeholder {
+      background: linear-gradient(135deg, #e8f0fc, #d0e0f8);
+      color: #a0b8d8;
+    }
+
+    .uvp-img-placeholder svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      opacity: .6;
+    }
+
+    .uvp-img-placeholder span {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    /* â”€â”€ REVENUE IMAGE PLACEHOLDER â”€â”€ */
+    .revenue-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 18px 32px rgba(15, 23, 42, 0.14);
+    }
+
+    .revenue-img::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.08) 0%, rgba(15, 23, 42, 0.3) 100%);
+      pointer-events: none;
+    }
+
+    .revenue-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+
+    .revenue-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8f8f0, #d0f0e0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #a0c8b0;
+    }
+
+    .revenue-img-placeholder svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      opacity: .6;
+    }
+
+    .revenue-img-placeholder span {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    /* â”€â”€ STAT CARD â€” keep numbers, no icons â”€â”€ */
+    .stat-card .stat-number {
+      font-family: 'Sora', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+
+    /* â”€â”€ INNOVATION IMAGE PLACEHOLDER â”€â”€ */
+    .innovation-img {
+      width: 100%;
+      height: 200px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .innovation-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .innovation-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #e8f8f0, #c8eedd);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #90c0a8;
+    }
+
+    .innovation-img-placeholder svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.4;
+      opacity: .55;
+    }
+
+    .innovation-img-placeholder span {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: .65;
+    }
+
+    /* â”€â”€ TARGET IMAGE PLACEHOLDER â”€â”€ */
+    .target-img {
+      width: 100%;
+      height: 180px;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .target-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .target-img-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #f0f4ff, #dce8ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #96acd8;
+    }
+
+    .target-img-placeholder svg {
+      width: 36px;
+      height: 36px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.4;
+      opacity: .55;
+    }
+
+    .target-img-placeholder span {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: .65;
+    }
+
+    .uvp-card h3 {
+      font-family: 'Sora', sans-serif;
+      position: relative;
+      z-index: 1;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 18px;
+      text-align: left;
+      letter-spacing: -0.03em;
+    }
+
+    .uvp-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .uvp-card ul li {
+      font-size: 16px;
+      color: #334155;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      line-height: 1.65;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+    }
+
+    .uvp-card ul li::before {
+      content: 'â€¢';
+      color: var(--green);
+      flex-shrink: 0;
+    }
+
+    .uvp-card ul li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      margin-top: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #13eca4 0%, #0f8f68 100%);
+      box-shadow: 0 0 0 5px rgba(19, 236, 164, 0.14);
+      flex-shrink: 0;
+    }
+
+    .innovation-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .innovation-label h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--dark);
+    }
+
+    .innovation-label h2 .green {
+      color: var(--green);
+    }
+
+    .innovation-text {
+      font-size: 15.5px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* â”€â”€ REVENUE â”€â”€ */
+    .revenue-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 56px;
+      align-items: stretch;
+    }
+
+    .revenue-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 252, 247, 0.98) 100%);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.1);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .revenue-card:nth-child(2) {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 249, 255, 0.98) 100%);
+    }
+
+    .revenue-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg, #13eca4 0%, #0f8f68 100%);
+    }
+
+    .revenue-card:nth-child(2)::before {
+      background: linear-gradient(90deg, #0f172a 0%, #2ecc71 100%);
+    }
+
+    .revenue-card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      top: -74px;
+      right: -48px;
+      border-radius: 50%;
+      background: rgba(19, 236, 164, 0.08);
+      pointer-events: none;
+    }
+
+    .revenue-card:nth-child(2)::after {
+      background: rgba(15, 23, 42, 0.06);
+    }
+
+    .revenue-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.14);
+    }
+
+    .revenue-card:hover .revenue-img img {
+      transform: scale(1.05);
+    }
+
+    .revenue-card h3 {
+      font-family: 'Sora', sans-serif;
+      position: relative;
+      z-index: 1;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 14px;
+      text-align: left;
+      letter-spacing: -0.03em;
+    }
+
+    .revenue-card p {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.8;
+      margin: 0 0 18px;
+    }
+
+    .explore-btn {
+      margin-top: auto;
+      align-self: flex-start;
+      background: linear-gradient(135deg, #13eca4 0%, #0f8f68 100%);
+      color: #fff;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      box-shadow: 0 14px 26px rgba(19, 236, 164, 0.24);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+
+    .explore-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+      box-shadow: 0 18px 32px rgba(19, 236, 164, 0.3);
+    }
+
+    .target-row {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .target-label h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(22px, 2.8vw, 36px);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .target-label h2 .green {
+      color: var(--green);
+    }
+
+    .target-text {
+      font-size: 15.5px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .target-text .hl {
+      color: var(--green);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    /* â”€â”€ GROWTH â”€â”€ */
+    .growth-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    .chart-note-red {
+      font-size: 14px;
+      color: #e74c3c;
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .survey-row {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .survey-chart-wrap {
+      flex-shrink: 0;
+      width: 150px;
+      height: 150px;
+    }
+
+    .survey-text {
+      font-size: 15.5px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* â”€â”€ BAR CHART â”€â”€ */
+    .barchart-section {
+      padding: 0 40px 80px;
+    }
+
+    .barchart-box {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px 24px 20px;
+    }
+
+    .barchart-box canvas {
+      max-height: 300px;
+    }
+
+    .barchart-caption {
+      font-size: 14px;
+      color: #e74c3c;
+      font-style: italic;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .uvp-card h3 {
+      font-size: 24px;
+    }
+
+    .uvp-card ul li {
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .stat-card .stat-number {
+      font-size: 28px;
+    }
+
+    /* â”€â”€ RESPONSIVE â”€â”€ */
+    @media (max-width: 860px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 40px 24px;
+        min-height: unset;
+      }
+
+      .section {
+        padding: 44px 24px;
+      }
+
+      .barchart-section {
+        padding: 0 24px 60px;
+      }
+
+      .uvp-cards,
+      .revenue-cards,
+      .growth-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .uvp-card {
+        padding: 22px;
+      }
+
+      .uvp-img {
+        height: 190px;
+      }
+
+      .revenue-card {
+        padding: 22px;
+      }
+
+      .revenue-img {
+        aspect-ratio: 1.55 / 1;
+      }
+
+      .innovation-row,
+      .target-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .innovation-label h2,
+      .target-label h2 {
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-links {
+        display: none;
+      }
+
+      .survey-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+   <nav>
+  <div class="nav-logo">
+    <div class="nav-icon">
+      <a href="index.html"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 75px; aspect-ratio: 1/1;"></a>
+    </div>
+
+  </div>
+  <ul class="nav-links">
+    <li><a href="business-homeb.html">Home</a></li>
+    <li><a href="servicesb.html">Services</a></li>
+    <li><a href="marketingb.html">Marketing</a></li>
+    <li><a href="how-it-worksb.html">How It Works</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle active">
+        Details
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="contributionb.html">Contribution</a></li>
+        <li><a href="detailsb.html" class="active">More Details</a></li>
+      </ul>
+    </li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='contact.html'">Contact us</button>
+</nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <h1>SkillBridge<br />Where Students<br /><span class="green">Learn &amp; Earn</span>,<br />And Businesses<br />Get
+        <span class="green">Affordable<br />Solutions</span></h1>
+    </div>
+    <div class="hero-right">
+      <div class="hero-img">
+        <img src="assets/images/Skill Bridge (23).png" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- UNIQUE VALUE PROPOSITION -->
+  <section class="section" style="padding-top:0;">
+    <h2 class="section-heading">Unique <span class="green">Value Proposition</span></h2>
+    <div class="uvp-cards">
+      <div class="uvp-card">
+        <div class="uvp-img">
+          <img src="assets/images/kenny-eliason-zFSo6bnZJTw-unsplash.jpg" alt="For Students" />
+        </div>
+        <h3>For Students</h3>
+        <ul>
+          <li>Skilled Part Time. No more Burger Flipping.</li>
+          <li>Learn &amp; Earn Architecture, get corporate experience and Earn Money to help your finances.</li>
+          <li>Mentoring from team leads.</li>
+          <li>Flexible Schedule. No need to stress during exam days.</li>
+        </ul>
+      </div>
+      <div class="uvp-card">
+        <div class="uvp-img">
+          <img src="assets/images/charles-forerunner-3fPXt37X6UQ-unsplash.jpg" alt="For Businesses" />
+
+        </div>
+        <h3>For Businesses</h3>
+        <ul>
+          <li>50 - 70% More affordable services.</li>
+          <li>Supervised work by industry's experts.</li>
+          <li>Multilingual and multinational support.</li>
+          <li>24/7 support and customized services available.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="innovation-row">
+      <div class="innovation-label">
+        <div class="innovation-img">
+          <img src="assets/images/6.png" alt="Core Innovation" />
+        </div>
+      </div>
+      <p class="innovation-text">
+        Our Innovation is Business Model Innovation. We are hiring early undergrads in part time contract. With the help
+        of students we can keep our service cost as low as possible. Business in this process can avail 50 - 70% more
+        affordable solutions.
+      </p>
+    </div>
+  </section>
+
+  <!-- REVENUE STREAMS -->
+  <section class="section" style="padding-top:0;">
+    <h2 class="section-heading"><span class="green">Revenue</span> Streams</h2>
+    <div class="revenue-cards">
+      <div class="revenue-card">
+        <div class="revenue-img">
+          <img src="assets/images/cova-software-7-Tx-7ONJVY-unsplash.jpg" alt="Client Augmented"/>
+
+        </div>
+        <h3>Client Augmented</h3>
+        <p>Our main revenue stream is from client augmented model. We provides personal services for startups and small to mid scale
+          companies with our employees that are students in our case. We are giving 50% - 70% affordable services still
+          making profit.</p>
+        <button class="explore-btn" onclick="location.href='contact.html'">Explore</button>
+      </div>
+      <div class="revenue-card">
+        <div class="revenue-img">
+          <img src="assets/images/towfiqu-barbhuiya-bwOAixLG0uc-unsplash.jpg" alt="Subscription"/>
+        </div>
+        <h3>Subscription</h3>
+        <p>We will launch this revenue stream in future to give subscription of our frequently purchased services which
+          will help client to get up to date for a longer period of time.</p>
+      </div>
+    </div>
+    <div class="target-row">
+      <div class="target-label">
+        <div class="target-img">
+          <img src="assets/images/5.png" alt="Target Audience" />
+        </div>
+      </div>
+      <p class="target-text">
+        Our revenue is totally dependent upon startups and small to mid scale businesses but for product creation we are
+        employing Early Undergrads. So <span class="hl">Early undergrads along with startups and small to mid scale
+          businesses</span> is our Target Audience.
+      </p>
+    </div>
+  </section>
+
+  <!-- GROWTH POTENTIAL -->
+  <section class="section" style="padding-top:0;">
+    <h2 class="section-heading"><span class="green">Growth</span> Potential</h2>
+    <div class="growth-stats">
+      <div class="stat-card">
+        <div class="stat-number">99.27%</div>
+        of Indian businesses are SMEs, yet only 1.6% own a website.
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50M+</div>
+        new firms are created globally each year.
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1%</div>
+        of SMEs maintain an active online presence.
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$4.3T</div>
+        Global IT Market projected by 2033, from $2.3T in 2024.
+      </div>
+    </div>
+    <p class="chart-note-red">We Gathered Data of students working in part time in unskilled areas but wants a skill
+      part time</p>
+    <div class="survey-row">
+      <div class="survey-chart-wrap">
+        <canvas id="surveyChart"></canvas>
+      </div>
+      <p class="survey-text">
+        By Our Survey, There are 75% students that are currently involved in the Unskilled part time jobs and all of
+        them wants to work in their field.
+      </p>
+    </div>
+  </section>
+
+  <!-- BAR CHART -->
+  <div class="barchart-section">
+    <div class="barchart-box">
+      <canvas id="barChart"></canvas>
+    </div>
+    <p class="barchart-caption">These Stats clearly shows the need and potential of skill bridge in both client side and
+      student side.</p>
+  </div>
+
+  <script>
+    new Chart(document.getElementById('surveyChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['75%', '25%'],
+        datasets: [{ data: [75, 25], backgroundColor: ['#2ecc71', '#e0e0e0'], borderWidth: 0 }]
+      },
+      options: {
+        cutout: '58%',
+        plugins: {
+          legend: { display: false },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.label}` } }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Netherlands', 'Germany', 'Denmark', 'UK'],
+        datasets: [
+          { label: 'Total part time', data: [74.30, 45.80, 56.40, 68], backgroundColor: '#4472c4', borderRadius: 3 },
+          { label: 'Skilled', data: [53.50, 33.00, 40.60, 50.30], backgroundColor: '#70ad47', borderRadius: 3 },
+          { label: 'Unskilled', data: [20.80, 12.80, 15.80, 17.70], backgroundColor: '#264478', borderRadius: 3 }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Part Time Work Type Among University Students in Europe',
+            font: { family: 'DM Sans', size: 13, weight: '600' },
+            color: '#111', padding: { bottom: 14 }
+          },
+          legend: {
+            position: 'bottom',
+            labels: { font: { family: 'DM Sans', size: 11 }, color: '#333', padding: 14 }
+          },
+          tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y}%` } }
+        },
+        scales: {
+          y: {
+            beginAtZero: true, max: 80,
+            ticks: { callback: v => v + '%', font: { family: 'DM Sans', size: 10 }, color: '#555' },
+            grid: { color: 'rgba(0,0,0,0.07)' }
+          },
+          x: {
+            ticks: { font: { family: 'DM Sans', size: 11 }, color: '#333' },
+            grid: { display: false }
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    const toggle = document.querySelector('.nav-dropdown-toggle');
+    const menu = document.querySelector('.dropdown-menu');
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function () {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    });
+    menu.addEventListener('click', function (e) { e.stopPropagation(); });
+  </script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>
