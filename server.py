@@ -22,7 +22,9 @@ from typing import Any
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parent
-DATA_DIR = ROOT / "data"
+DATA_DIR = Path(os.environ.get("SKILLBRIDGE_DATA_DIR", str(ROOT / "data"))).expanduser()
+if not DATA_DIR.is_absolute():
+    DATA_DIR = (ROOT / DATA_DIR).resolve()
 DB_PATH = DATA_DIR / "skillbridge.db"
 COOKIE_NAME = "skillbridge_session"
 SESSION_DAYS = 14

@@ -42,12 +42,63 @@
     'SELECT',
     'OPTION',
   ]);
+  const DEFAULT_WORK_AREAS = [
+    {
+      key: 'website-development',
+      label: 'Website Development',
+      description: 'Landing pages, business sites, maintenance, and web builds.',
+      icon: 'web',
+    },
+    {
+      key: 'ux-ui-design',
+      label: 'UX/UI Design',
+      description: 'Interface design, product flows, wireframes, and Figma-based work.',
+      icon: 'draw',
+    },
+    {
+      key: 'digital-marketing',
+      label: 'Digital Marketing',
+      description: 'SEO audits, social setup, campaign support, and growth work.',
+      icon: 'campaign',
+    },
+    {
+      key: 'creative-media',
+      label: 'Creative Media',
+      description: 'Video edits, motion assets, and supporting content production.',
+      icon: 'movie',
+    },
+    {
+      key: 'automation-support',
+      label: 'Automation Support',
+      description: 'Workflow automations, systems support, and process simplification.',
+      icon: 'auto_awesome_motion',
+    },
+    {
+      key: 'business-support',
+      label: 'Business Support',
+      description: 'Operational digital tasks, research, CRM, and data support.',
+      icon: 'support_agent',
+    },
+  ];
   const state = {
     user: null,
-    workAreas: [],
+    workAreas: cloneWorkAreas(DEFAULT_WORK_AREAS),
     backendReady: !needsServerBridge,
   };
   let fontScaleFrame = 0;
+
+  function cloneWorkAreas(items) {
+    return Array.isArray(items)
+      ? items
+          .filter((item) => item && item.key && item.label)
+          .map((item) => ({
+            key: String(item.key),
+            label: String(item.label),
+            description: String(item.description || ''),
+            icon: String(item.icon || 'work'),
+          }))
+      : [];
+  }
 
   function currentPagePath() {
     const rawPath = window.location.pathname || '/index.html';
@@ -739,10 +790,10 @@
     try {
       const data = await apiRequest('/api/me');
       state.user = data.user || null;
-      state.workAreas = Array.isArray(data.workAreas) ? data.workAreas : [];
+      state.workAreas = Array.isArray(data.workAreas) && data.workAreas.length ? cloneWorkAreas(data.workAreas) : cloneWorkAreas(DEFAULT_WORK_AREAS);
     } catch (error) {
       state.user = null;
-      if (!state.workAreas.length) state.workAreas = [];
+      if (!state.workAreas.length) state.workAreas = cloneWorkAreas(DEFAULT_WORK_AREAS);
     }
   }
 
