@@ -187,16 +187,20 @@
     }
 
     .hero-panel {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
       padding: 24px;
       border-radius: 28px;
       background: rgba(255, 255, 255, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(8px);
       box-shadow: 0 18px 38px rgba(15, 23, 42, 0.14);
+    }
+
+    .hero-panel-copy {
+      display: grid;
+      gap: 12px;
     }
 
     .hero-panel h3 {
@@ -214,6 +218,10 @@
     .metric-stack {
       display: grid;
       gap: 14px;
+    }
+
+    .metric-stack--inline {
+      margin-top: 4px;
     }
 
     .metric-chip {
@@ -447,6 +455,42 @@
       flex-shrink: 0;
     }
 
+    .marketing-dual-panel {
+      align-items: stretch;
+    }
+
+    .marketing-dual-panel .soft-panel,
+    .marketing-dual-panel .info-card {
+      height: 100%;
+      border-radius: 30px;
+      box-shadow: 0 22px 46px rgba(15, 23, 42, 0.08);
+    }
+
+    .marketing-dual-panel .soft-panel {
+      display: grid;
+      gap: 18px;
+      padding: 30px 28px;
+      background: linear-gradient(180deg, #edf8f4 0%, #f5fbf7 100%);
+    }
+
+    .marketing-dual-panel .info-card {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+      padding: 30px 26px;
+    }
+
+    .marketing-dual-panel .card-list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .marketing-dual-panel .service-map {
+      margin-top: 0;
+    }
+
     @media (max-width: 980px) {
       #sb-nav {
         padding: 0 22px;
@@ -534,22 +578,22 @@
           </div>
         </div>
         <aside class="hero-panel">
-          <div>
+          <div class="hero-panel-copy">
             <h3>What this page covers</h3>
             <p>The business marketing side of SkillBridge focuses on practical launch support, visibility work, and content production that fits startup timelines.</p>
-          </div>
-          <div class="metric-stack">
-            <div class="metric-chip">
-              <strong>50-70%</strong>
-              <span>lower cost positioning than traditional agencies</span>
-            </div>
-            <div class="metric-chip">
-              <strong>Remote first</strong>
-              <span>campaign and content support that can move quickly across time zones</span>
-            </div>
-            <div class="metric-chip">
-              <strong>Flexible scope</strong>
-              <span>from one-off launch help to recurring monthly support</span>
+            <div class="metric-stack metric-stack--inline">
+              <div class="metric-chip">
+                <strong>50-70%</strong>
+                <span>lower cost positioning than traditional agencies</span>
+              </div>
+              <div class="metric-chip">
+                <strong>Remote first</strong>
+                <span>campaign and content support that can move quickly across time zones</span>
+              </div>
+              <div class="metric-chip">
+                <strong>Flexible scope</strong>
+                <span>from one-off launch help to recurring monthly support</span>
+              </div>
             </div>
           </div>
         </aside>
@@ -577,7 +621,7 @@
       </div>
     </section>
 
-    <section class="section dual-panel">
+    <section class="section dual-panel marketing-dual-panel">
       <div class="soft-panel">
         <h3>What businesses can hand over</h3>
         <p>Marketing support is meant to remove the busywork that slows down founders. Instead of trying to manage every channel alone, businesses can hand over clear chunks of growth work.</p>
