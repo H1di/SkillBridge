@@ -3,11 +3,25 @@
   const burger = document.querySelector('[data-burger]');
 
   if (burger && drawer) {
+    const setDrawerState = (open) => {
+      drawer.setAttribute('data-open', String(open));
+      drawer.style.display = open ? 'block' : 'none';
+      burger.setAttribute('aria-expanded', String(open));
+    };
+
     burger.addEventListener('click', () => {
       const open = drawer.getAttribute('data-open') === 'true';
-      drawer.setAttribute('data-open', String(!open));
-      drawer.style.display = open ? 'none' : 'block';
-      burger.setAttribute('aria-expanded', String(!open));
+      setDrawerState(!open);
+    });
+
+    drawer.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setDrawerState(false));
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860) {
+        setDrawerState(false);
+      }
     });
   }
 

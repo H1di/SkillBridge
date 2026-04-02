@@ -815,3 +815,351 @@ body > nav:first-of-type .nav-cta:hover,
     gap:22px;
   }
 }
+
+/* Cross-page responsive adaptation */
+html{
+  overflow-x: clip;
+}
+
+body{
+  min-width: 320px;
+}
+
+canvas{
+  max-width: 100%;
+}
+
+@media (min-width: 1440px){
+  :root{
+    --container: 1240px;
+  }
+
+  .contact-grid,
+  .dual-panel,
+  .banner-grid{
+    gap: clamp(32px, 3vw, 56px);
+  }
+
+  .hero-stats{
+    width: min(420px, 100%);
+  }
+}
+
+@media (min-width: 1800px){
+  :root{
+    --container: 1320px;
+  }
+}
+
+@supports (height: 100dvh){
+  .split{
+    min-height: calc(100dvh - var(--site-header-height));
+  }
+
+  .carousel{
+    top: var(--nav-h) !important;
+    bottom: auto !important;
+    height: calc(100dvh - var(--nav-h)) !important;
+  }
+
+  .slide{
+    min-height: calc(100dvh - var(--nav-h)) !important;
+  }
+}
+
+@media (max-width: 980px){
+  .banner,
+  .contact-copy,
+  .card,
+  .soft-panel,
+  .info-card,
+  .feature-card,
+  .timeline-card,
+  .service-card,
+  .faq-card,
+  .metric-card,
+  .price-card,
+  .mini-panel{
+    padding: clamp(22px, 4vw, 30px) !important;
+  }
+
+  .hero-left,
+  .hero-right{
+    padding-top: 32px !important;
+  }
+
+  .hero-title,
+  .h1{
+    font-size: clamp(34px, 6vw, 58px) !important;
+  }
+
+  .lead{
+    font-size: 17px !important;
+  }
+
+  .pricing-table{
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pricing-table th,
+  .pricing-table td{
+    min-width: 160px;
+  }
+}
+
+@media (max-width: 760px){
+  :root{
+    --site-header-height: 82px;
+    --site-header-logo-size: 82px;
+  }
+
+  .container{
+    width: min(var(--container), calc(100% - 32px));
+  }
+
+  body > nav:first-of-type,
+  #sb-nav{
+    padding-inline: 14px !important;
+  }
+
+  body > nav:first-of-type .nav-links,
+  #sb-nav .sb-nav-links{
+    display: flex !important;
+    gap: 8px !important;
+    scroll-snap-type: x proximity;
+    padding-bottom: 2px !important;
+  }
+
+  body > nav:first-of-type .nav-links a,
+  #sb-nav .sb-nav-links a,
+  body > nav:first-of-type .nav-dropdown-toggle,
+  body > nav:first-of-type .sb-nav-dropdown-toggle,
+  #sb-nav .sb-nav-dropdown-toggle{
+    scroll-snap-align: start;
+  }
+
+  body > nav:first-of-type .dropdown-menu,
+  body > nav:first-of-type .sb-dropdown-menu,
+  #sb-nav .sb-dropdown-menu{
+    left: 0 !important;
+    transform: none !important;
+  }
+
+  .hero-stats,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .kpi-strip,
+  .mini-cards,
+  .contact-grid,
+  .banner-grid,
+  .dual-panel{
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-stats{
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .carousel{
+    overflow: hidden !important;
+  }
+
+  .slide{
+    gap: 18px !important;
+    padding: 24px 48px 24px 20px !important;
+  }
+
+  .slide-image{
+    flex-basis: min(42vw, 340px) !important;
+  }
+
+  .img-card{
+    width: min(100%, 420px) !important;
+  }
+
+  .float-badge{
+    max-width: calc(100% - 32px);
+    white-space: normal !important;
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px){
+  :root{
+    --site-header-height: 76px;
+    --site-header-logo-size: 72px;
+  }
+
+  .container{
+    width: calc(100% - 24px);
+  }
+
+  .site-header .header-inner{
+    min-height: 76px !important;
+    gap: 12px !important;
+  }
+
+  .site-header .burger{
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+
+  body > nav:first-of-type,
+  #sb-nav{
+    padding-inline: 10px !important;
+  }
+
+  body > nav:first-of-type .nav-links,
+  #sb-nav .sb-nav-links{
+    gap: 6px !important;
+  }
+
+  body > nav:first-of-type .nav-links a,
+  #sb-nav .sb-nav-links a,
+  body > nav:first-of-type .nav-dropdown-toggle,
+  body > nav:first-of-type .sb-nav-dropdown-toggle,
+  #sb-nav .sb-nav-dropdown-toggle{
+    font-size: 15px !important;
+    padding: 10px 12px !important;
+  }
+
+  .banner,
+  .contact-copy,
+  .card,
+  .soft-panel,
+  .info-card,
+  .feature-card,
+  .timeline-card,
+  .service-card,
+  .faq-card,
+  .metric-card,
+  .price-card,
+  .mini-panel{
+    padding: 20px !important;
+    border-radius: 22px !important;
+  }
+
+  .hero h2,
+  .hero-title,
+  .h1{
+    font-size: clamp(30px, 10vw, 44px) !important;
+  }
+
+  .hero p,
+  .lead,
+  .slide-subtitle{
+    font-size: 16px !important;
+  }
+
+  .section-title{
+    font-size: 28px !important;
+  }
+
+  .hero-left h1{
+    font-size: clamp(36px, 10vw, 56px) !important;
+    line-height: 1.08 !important;
+  }
+
+  .hero-left h1 br{
+    display: none;
+  }
+
+  .slide{
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding: 18px 18px 76px !important;
+  }
+
+  .slide-photo,
+  .slide-image{
+    width: min(100%, 460px) !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .slide-photo{
+    height: clamp(220px, 54vw, 320px) !important;
+    border-radius: 28px !important;
+  }
+
+  .slide-content{
+    width: 100% !important;
+    max-width: none !important;
+    padding: 8px 0 0 !important;
+  }
+
+  .mentor,
+  .quote-row{
+    flex-wrap: wrap !important;
+  }
+
+  .info-line{
+    flex-direction: column !important;
+    gap: 2px !important;
+  }
+
+  .dot-nav{
+    top: auto !important;
+    right: auto !important;
+    bottom: 12px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    flex-direction: row !important;
+    background: rgba(255,255,255,0.86);
+    padding: 8px 10px;
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 24px rgba(15,23,42,0.12);
+  }
+
+  .nav-dot.active{
+    width: 24px !important;
+    height: 10px !important;
+  }
+
+  .float-badge{
+    position: static !important;
+    transform: none !important;
+    margin: 14px auto 0 !important;
+    width: fit-content;
+  }
+}
+
+@media (max-width: 480px){
+  .banner,
+  .contact-copy,
+  .card,
+  .soft-panel,
+  .info-card,
+  .feature-card,
+  .timeline-card,
+  .service-card,
+  .faq-card,
+  .metric-card,
+  .price-card,
+  .mini-panel,
+  .mini,
+  .hero-stat,
+  .kpi{
+    padding: 16px !important;
+  }
+
+  .slide::before{
+    width: 220px !important;
+    height: 220px !important;
+    top: -50px !important;
+    right: -50px !important;
+  }
+
+  .pricing-table th,
+  .pricing-table td{
+    padding: 12px;
+    min-width: 140px;
+  }
+}
