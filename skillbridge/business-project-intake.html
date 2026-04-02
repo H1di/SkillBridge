@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Start a Project</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="SkillBridge home">
+          <div class="brand-badge"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 100px; aspect-ratio: 1/1;"></div>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="student-home.html">Students</a>
+          <a href="business-home.html">Businesses</a>
+          <a href="how-it-works.html">How it Works</a>
+          <a href="services.html">Services</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-primary" href="business-project-intake.html">Start a Project</a>
+          <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
+        <a href="student-home.html">Students</a>
+        <a href="business-home.html">Businesses</a>
+        <a href="how-it-works.html">How it Works</a>
+        <a href="services.html">Services</a>
+        <a href="business-project-intake.html">Start a Project</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+  
+<main class="page">
+  <div class="container">
+    <section class="page-hero">
+      <div class="pill">Business Intake</div>
+      <h1 class="hero-title">Start a project with SkillBridge and get matched to a supervised student team.</h1>
+    </section>
+
+    <section class="section grid-2">
+      <article class="card">
+        <h3 style="margin-top:0">Suggested intake fields</h3>
+        <ul class="card-list">
+          <li>Business name and contact details</li>
+          <li>Type of service required</li>
+          <li>Project goal and current problem</li>
+          <li>Desired timeline and budget range</li>
+          <li>Need for one-off delivery or long-term support</li>
+          <li>Any required languages, assets, or existing systems</li>
+        </ul>
+      </article>
+      <article class="info-card">
+        <h3>Retention strategy</h3>
+        <ul class="card-list">
+          <li>High-quality supervised work</li>
+          <li>Regular communication during delivery</li>
+          <li>Small revisions after completion</li>
+          <li>Client feedback loop for service improvement</li>
+          <li>Planned loyalty credits and subscription packages</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Projected service mix</h2>
+      <table class="pricing-table">
+        <thead>
+          <tr><th>Time period</th><th>Likely services sold</th><th>Comment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Months 1-2</td><td>Landing pages, SEO audits, social setups, video edits</td><td>Early post-launch phase with lower revenue and active client acquisition.</td></tr>
+          <tr><td>Months 3-6</td><td>Higher volume of pages, audits, setups, edits, plus social management</td><td>Expected move toward operational sustainability.</td></tr>
+          <tr><td>Months 7-18</td><td>Scaled delivery across repeated service lines</td><td>More teams, more clients, more recurring work.</td></tr>
+        </tbody>
+      </table>
+      <p class="note">The report positions SkillBridge as bootstrapped first, with possible later support from grants or angel investors if growth targets are exceeded.</p>
+    </section>
+  </div>
+</main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy"><em>Affordable tech. Real experience. Paid learning.</em></div>
+        <div class="footer-icons" aria-label="Social links">
+          <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
+          <a href="#" aria-label="Mail"><span class="material-symbols-outlined" aria-hidden="true">mail</span></a>
+          <a href="#" aria-label="Public"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+        </div>
+        <div class="footer-copy">© <span id="year"></span> SkillBridge. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

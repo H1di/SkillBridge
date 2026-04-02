@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Student Opportunities</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #2ecc71;
+    --green-dark: #27ae60;
+    --dark: #0d0d0d;
+    --light: #f9f9f9;
+    --white: #ffffff;
+    --text-muted: #555;
+    --nav-h: var(--site-header-height);
+  }
+
+  html, body { height: 100%; overflow: hidden; font-family: 'DM Sans', sans-serif; background: var(--light); }
+
+  /* ── NAVBAR ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 6px; }
+.nav-icon {
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-icon svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2.2; }
+.nav-brand { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; color: var(--dark); }
+.nav-brand span { color: var(--green); }
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: #444; transition: color .2s; }
+.nav-links a:hover { color: var(--green); }
+.nav-links a.active { color: var(--green); font-weight: 600; }
+
+/* ── DROPDOWN ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  display: flex; align-items: center; gap: 4px;
+  text-decoration: none; font-size: 14px; font-weight: 500;
+  color: #444; cursor: pointer; transition: color .2s;
+  background: none; border: none; font-family: 'DM Sans', sans-serif;
+  padding: 0;
+}
+.nav-dropdown-toggle.active { color: var(--green); font-weight: 600; }
+.nav-dropdown-toggle:hover { color: var(--green); }
+.nav-dropdown-toggle svg {
+  width: 12px; height: 12px; stroke: currentColor;
+  fill: none; stroke-width: 2.5; transition: transform .2s;
+}
+.nav-dropdown-toggle.open svg { transform: rotate(180deg); }
+.dropdown-menu {
+  display: none;
+  position: absolute; top: calc(100% + 12px); left: 50%;
+  transform: translateX(-50%);
+  background: white; border: 1px solid var(--border);
+  border-radius: 10px; padding: 6px 0; min-width: 160px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  z-index: 200;
+}
+.dropdown-menu.open { display: block; }
+.dropdown-menu li { list-style: none; }
+.dropdown-menu a {
+  display: block; padding: 9px 16px;
+  font-size: 14px; font-weight: 500; color: #444;
+  text-decoration: none; transition: background .15s, color .15s;
+  white-space: nowrap;
+}
+.dropdown-menu a:hover { background: #f5fdf8; color: var(--green); }
+.dropdown-menu a.active { color: var(--green); font-weight: 600; }
+.nav-cta {
+  background: var(--green); color: #fff;
+  border: none; padding: 7px 18px; border-radius: 20px;
+  font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif;
+}
+
+
+  /* ── SLIDES WRAPPER ── */
+  .carousel {
+    position: fixed; top: var(--nav-h); left: 0; right: 0;
+    bottom: 0; overflow: hidden;
+  }
+  .slides {
+    display: flex; height: 100%;
+    transition: transform .65s cubic-bezier(.77,0,.175,1);
+  }
+  .slide {
+    min-width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    gap: 32px;
+    padding: 20px 116px 20px 40px;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  /* slide backgrounds */
+  .slide-1 { background: linear-gradient(135deg, #f0fef4 0%, #e8f8f0 100%); }
+  .slide-2 { background: linear-gradient(135deg, #f5f0ff 0%, #ede8ff 100%); }
+  .slide-3 { background: linear-gradient(135deg, #fff8f0 0%, #ffeedd 100%); }
+  .slide-4 { background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 100%); }
+  .slide-5 { background: linear-gradient(135deg, #f0f4ff 0%, #e8eeff 100%); }
+
+  /* decorative blob */
+  .slide::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    opacity: .12;
+    pointer-events: none;
+  }
+  .slide-1::before { background: var(--green); }
+  .slide-2::before { background: #8b5cf6; }
+  .slide-3::before { background: #f97316; }
+  .slide-4::before { background: #2ecc71; }
+  .slide-5::before { background: #3b82f6; }
+
+  /* ── SLIDE CONTENT ── */
+  .slide-content {
+    flex: 0 1 640px; max-width: 640px; z-index: 2;
+  }
+  .slide-tag {
+    display: inline-block;
+    font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--green); background: rgba(46,204,113,.12);
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 14px;
+  }
+  .slide-4 .slide-tag { background: rgba(46,204,113,.2); }
+  .slide-title {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(30px, 3.4vw, 46px);
+    font-weight: 800; line-height: 1.15;
+    color: var(--dark); margin-bottom: 14px;
+  }
+  .slide-4 .slide-title { color: white; }
+  .slide-title span { color: var(--green); }
+  .slide-subtitle {
+    font-size: 18px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.7;
+  }
+  .slide-4 .slide-subtitle { color: #aaa; }
+  .slide-list { list-style: none; margin-bottom: 24px; display: flex; flex-direction: column; gap: 12px; }
+  .slide-list li {
+    font-size: 17px; color: #444; display: flex; gap: 12px; align-items: flex-start; line-height: 1.65;
+  }
+  .slide-4 .slide-list li { color: #ccc; }
+  .slide-list li::before {
+    content: ''; display: block; flex-shrink: 0;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--green); margin-top: 8px;
+  }
+
+  /* mentor row */
+  .mentor {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  }
+  .mentor-avatar {
+    width: 54px; height: 54px; border-radius: 50%; overflow: hidden;
+    background: linear-gradient(135deg, var(--green) 0%, #27ae60 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; color: white; font-weight: 700; font-family: 'Sora', sans-serif;
+    flex-shrink: 0;
+  }
+  .mentor-info .name { font-weight: 700; font-size: 17px; color: var(--dark); }
+  .slide-4 .mentor-info .name { color: white; }
+  .mentor-info .role { font-size: 14px; color: #888; line-height: 1.5; }
+  .join-btn {
+    background: var(--green); color: white;
+    border: none; padding: 12px 30px; border-radius: 30px;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+    font-family: 'Sora', sans-serif;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 6px 20px rgba(46,204,113,.35);
+  }
+  .join-btn:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(46,204,113,.45); }
+
+  /* ── IMAGE SIDE ── */
+  .slide-image {
+    flex: 0 1 620px; display: flex; justify-content: center; align-items: center;
+    z-index: 2; position: relative;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .img-card {
+    width: clamp(420px, 40vw, 580px);
+    aspect-ratio: 4/3;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,.14);
+    position: relative;
+  }
+  .img-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-card .img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 64px;
+  }
+
+  /* slide-specific card colours */
+  .slide-1 .img-card { background: #d5f5e3; }
+  .slide-2 .img-card { background: #e8daff; }
+  .slide-3 .img-card { background: #ffe5cc; }
+  .slide-4 .img-card { background: #1e3a2f; }
+  .slide-5 .img-card { background: #dce8ff; }
+
+  /* floating badge */
+  .float-badge {
+    position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+    background: white; border-radius: 14px; padding: 8px 16px;
+    font-size: 12px; font-weight: 700; color: var(--dark);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12); white-space: nowrap;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .float-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+
+  /* ── DOT NAV ── */
+  .dot-nav {
+    position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 12px; z-index: 200;
+  }
+  .nav-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: rgba(0,0,0,0.2); cursor: pointer;
+    transition: background .3s, transform .3s, height .3s, border-radius .3s;
+    border: none; outline: none;
+    padding: 0;
+  }
+  .nav-dot.active {
+    background: var(--green);
+    transform: scale(1.1);
+    height: 24px; border-radius: 6px;
+  }
+  .nav-dot:hover:not(.active) { background: rgba(0,0,0,0.4); transform: scale(1.15); }
+
+  /* ── SLIDE-IN ANIMATION ── */
+  .slide-content, .slide-image {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .5s ease, transform .5s ease;
+  }
+  .slide.visible .slide-content { opacity: 1; transform: translateY(0); transition-delay: .15s; }
+  .slide.visible .slide-image   { opacity: 1; transform: translateY(0); transition-delay: .3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .slide { gap: 22px; padding: 20px 48px 20px 14px; }
+    .slide-content { max-width: 560px; }
+    .slide-image { padding-right: 0; }
+    .img-card { width: clamp(320px, 36vw, 440px); }
+    nav { padding: 0 20px; }
+    .nav-links { gap: 16px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .slide { gap: 16px; padding: 16px 30px 16px 8px; }
+    .slide-title { font-size: clamp(22px, 6vw, 30px); }
+    .slide-subtitle { font-size: 15px; }
+    .slide-list li { font-size: 14px; }
+    .mentor-info .name { font-size: 15px; }
+    .mentor-info .role { font-size: 13px; }
+    .join-btn { padding: 10px 20px; font-size: 14px; }
+    .dot-nav { right: 10px; }
+    .img-card { width: clamp(240px, 58vw, 340px); }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-icon">
+      <a href="index.html"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 75px; aspect-ratio: 1/1;"></a>
+    </div>
+    
+  </div>
+  <ul class="nav-links">
+    <li><a href="student-home.html">Home</a></li>
+    <li><a href="student-opportunities.html" class="active">Teams</a></li>
+    <li><a href="marketings.html">Marketing</a></li>
+    <li><a href="student-how-it-works.html">How It Works</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle">
+        Details
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="contribution.html">Contribution</a></li>
+        <li><a href="details.html">More Details</a></li>
+      </ul>
+    </li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='contact.html'">Contact us</button>
+</nav>
+
+<!-- CAROUSEL -->
+<div class="carousel">
+  <div class="slides" id="slides">
+
+    <!-- SLIDE 1: Web & App Dev -->
+    <div class="slide slide-1 visible">
+      <div class="slide-content">
+        <span class="slide-tag">Student Opportunity</span>
+        <h1 class="slide-title">Web &amp; App Dev<br/>With <span>UI/UX Design</span></h1>
+        <p class="slide-subtitle">Build real-world websites &amp; apps for actual business needs.</p>
+        <ul class="slide-list">
+          <li>Business sites, portfolios &amp; e-commerce</li>
+          <li>Dashboards, booking &amp; management tools</li>
+          <li>Mobile apps — Android, iOS &amp; cross-platform</li>
+          <li>Working with APIs &amp; databases</li>
+          <li>Bug fixing &amp; performance optimisation</li>
+        </ul>
+        <div class="mentor">
+          <div class="mentor-avatar">E</div>
+          <div class="mentor-info">
+            <div class="name">Eugene</div>
+            <div class="role">Founder &amp; Team head of Web &amp; App</div>
+          </div>
+        </div>
+        <button class="join-btn">Join Now →</button>
+      </div>
+      <div class="slide-image">
+        <div class="img-card">
+          <div class="img-placeholder"><img src="assets/images/alvaro-reyes-zvmZiw3vdsQ-unsplash.jpg" alt=""></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Data Automation -->
+    <div class="slide slide-2">
+      <div class="slide-content">
+        <span class="slide-tag">Student Opportunity</span>
+        <h1 class="slide-title">Data <span>Automation</span></h1>
+        <p class="slide-subtitle">Automate workflows and manage business data efficiently using smart systems.</p>
+        <ul class="slide-list">
+          <li>Automating repetitive tasks using scripts</li>
+          <li>Managing and organising data in CRM systems</li>
+          <li>Working with Excel, CSV, and databases</li>
+          <li>Creating dashboards and reports</li>
+          <li>Handling customer data and workflows</li>
+        </ul>
+        <div class="mentor">
+          <div class="mentor-avatar" style="background: linear-gradient(135deg,#8b5cf6,#6d28d9)">J</div>
+          <div class="mentor-info">
+            <div class="name">Josh</div>
+            <div class="role">Founder &amp; Team head of Data Automation</div>
+          </div>
+        </div>
+        <button class="join-btn" style="background:#8b5cf6;box-shadow:0 6px 20px rgba(139,92,246,.35)">Join Now →</button>'
+      </div>
+      <div class="slide-image">
+        <div class="img-card">
+          <div class="img-placeholder"><img src="assets/images/jakub-zerdzicki-EL16ACtwLxg-unsplash.jpg" alt=""></div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- SLIDE 3: Digital Marketing -->
+    <div class="slide slide-3">
+      <div class="slide-content">
+        <span class="slide-tag">Student Opportunity</span>
+        <h1 class="slide-title">Digital <span>Marketing</span></h1>
+        <p class="slide-subtitle">Promote brands and grow businesses through digital strategies.</p>
+        <ul class="slide-list">
+          <li>Social media marketing campaigns</li>
+          <li>SEO and content optimisation</li>
+          <li>Running ads (Google, Instagram, etc.)</li>
+          <li>Email marketing basics</li>
+          <li>Analysing performance metrics</li>
+        </ul>
+        <div class="mentor">
+          <div class="mentor-avatar" style="background: linear-gradient(135deg,#f97316,#ea580c)">D</div>
+          <div class="mentor-info">
+            <div class="name">Daniil</div>
+            <div class="role">Founder &amp; Team head of Digital Marketing</div>
+          </div>
+        </div>
+        <button class="join-btn" style="background:#f97316;box-shadow:0 6px 20px rgba(249,115,22,.35)">Join Now →</button>
+      </div>
+      <div class="slide-image">
+        <div class="img-card">
+          <div class="img-placeholder"><img src="assets/images/firmbee-com-gcsNOsPEXfs-unsplash.jpg" alt=""></div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- SLIDE 4: Creative Media -->
+    <div class="slide slide-4">
+      <div class="slide-content">
+        <span class="slide-tag">Student Opportunity</span>
+        <h1 class="slide-title">Creative <span>Media</span></h1>
+        <p class="slide-subtitle">Create engaging content that captures attention and tells stories.</p>
+        <ul class="slide-list">
+          <li>Video editing and short-form content</li>
+          <li>Reels, YouTube, and social content</li>
+          <li>Storyboarding and content planning</li>
+          <li>Basic animation and motion graphics</li>
+          <li>Brand storytelling</li>
+        </ul>
+        <div class="mentor">
+          <div class="mentor-avatar" style="background: linear-gradient(135deg,#2ecc71,#059669)">M</div>
+          <div class="mentor-info">
+            <div class="name">Mark</div>
+            <div class="role">Founder &amp; Team head of Creative Media</div>
+          </div>
+        </div>
+        <button class="join-btn">Join Now →</button>
+      </div>
+      <div class="slide-image">
+        <div class="img-card">
+          <div class="img-placeholder"><img src="assets/images/james-mckinven-cauCwvTkHLM-unsplash.jpg" alt=""></div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- SLIDE 5: Graphic Design -->
+    <div class="slide slide-5">
+      <div class="slide-content">
+        <span class="slide-tag">Student Opportunity</span>
+        <h1 class="slide-title">Graphic <span>Design</span></h1>
+        <p class="slide-subtitle">Design visuals that communicate ideas and build strong brand identity.</p>
+        <ul class="slide-list">
+          <li>Basic social media posts and banners</li>
+          <li>Logos and brand identity</li>
+          <li>Posters, flyers, and creatives</li>
+          <li>UI elements and design assets</li>
+          <li>Marketing creatives</li>
+        </ul>
+        <div class="mentor">
+          <div class="mentor-avatar" style="background: linear-gradient(135deg,#3b82f6,#1d4ed8)">D</div>
+          <div class="mentor-info">
+            <div class="name">Danilius</div>
+            <div class="role">Founder &amp; Team head of Creative Media</div>
+          </div>
+        </div>
+        <button class="join-btn" style="background:#3b82f6;box-shadow:0 6px 20px rgba(59,130,246,.35)">Join Now →</button>
+      </div>
+      <div class="slide-image">
+        <div class="img-card">
+          <div class="img-placeholder"><img src="assets/images/georgie-cobbs-ruyYjS0OSaw-unsplash.jpg" alt=""></div>
+        </div>
+      </div>
+      
+    </div>
+
+  </div><!-- /slides -->
+</div><!-- /carousel -->
+
+<!-- DOT NAV -->
+<div class="dot-nav" id="dotNav">
+  <button class="nav-dot active" onclick="goTo(0)" title="Web & App Dev"></button>
+  <button class="nav-dot" onclick="goTo(1)" title="Data Automation"></button>
+  <button class="nav-dot" onclick="goTo(2)" title="Digital Marketing"></button>
+  <button class="nav-dot" onclick="goTo(3)" title="Creative Media"></button>
+  <button class="nav-dot" onclick="goTo(4)" title="Graphic Design"></button>
+</div>
+
+<script>
+  const slidesEl  = document.getElementById('slides');
+  const slideEls  = document.querySelectorAll('.slide');
+  const dots      = document.querySelectorAll('.nav-dot');
+  let current     = 0;
+  let isAnimating = false;
+
+  function goTo(index) {
+    if (index === current || isAnimating) return;
+    isAnimating = true;
+
+    slideEls[current].classList.remove('visible');
+    dots[current].classList.remove('active');
+
+    current = index;
+    slidesEl.style.transform = `translateX(-${current * 100}%)`;
+    dots[current].classList.add('active');
+
+    setTimeout(() => {
+      slideEls[current].classList.add('visible');
+      isAnimating = false;
+    }, 300);
+  }
+
+  // keyboard arrows
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goTo(Math.min(current + 1, 4));
+    if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  goTo(Math.max(current - 1, 0));
+  });
+
+  // touch / swipe
+  let touchY = null;
+  document.addEventListener('touchstart', e => { touchY = e.touches[0].clientY; });
+  document.addEventListener('touchend', e => {
+    if (touchY === null) return;
+    const diff = touchY - e.changedTouches[0].clientY;
+    if (Math.abs(diff) > 40) {
+      diff > 0 ? goTo(Math.min(current+1,4)) : goTo(Math.max(current-1,0));
+    }
+    touchY = null;
+  });
+
+  // scroll wheel
+  let wheelCooldown = false;
+  document.addEventListener('wheel', e => {
+    if (wheelCooldown) return;
+    wheelCooldown = true;
+    e.deltaY > 0 ? goTo(Math.min(current+1,4)) : goTo(Math.max(current-1,0));
+    setTimeout(() => wheelCooldown = false, 800);
+  });
+</script>
+<script>
+  const toggle = document.querySelector('.nav-dropdown-toggle');
+  const menu = document.querySelector('.dropdown-menu');
+  toggle.addEventListener('click', function(e) {
+    e.stopPropagation();
+    toggle.classList.toggle('open');
+    menu.classList.toggle('open');
+  });
+  document.addEventListener('click', function() {
+    toggle.classList.remove('open');
+    menu.classList.remove('open');
+  });
+  menu.addEventListener('click', function(e) { e.stopPropagation(); });
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

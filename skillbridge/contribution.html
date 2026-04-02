@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SkillBridge – Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:      #2ecc71;
+  --green-dark: #27ae60;
+  --dark:       #111;
+  --white:      #fff;
+  --nav-h:      var(--site-header-height);
+}
+
+html, body {
+  height: 100%; overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+  background: #fff;
+}
+
+/* ─────────── NAV ─────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.nav-logo { display: flex; align-items: center; gap: 6px; text-decoration: none; }
+.nav-logo .logo-icon {
+ border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo .logo-icon svg { width: 16px; height: 16px; fill: none; stroke: #fff; stroke-width: 2.2; }
+.nav-logo .logo-text { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 14px; color: var(--dark); }
+.nav-logo .logo-text span { color: var(--green); }
+
+.nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: #555; transition: color .2s; }
+.nav-links a:hover,
+.nav-links a.active { color: var(--green-dark); font-weight: 700; }
+
+/* dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 14px; font-weight: 500; color: #555;
+  background: none; border: none; font-family: 'DM Sans', sans-serif;
+  cursor: pointer; padding: 0; transition: color .2s;
+}
+.nav-dropdown-toggle:hover { color: var(--dark); }
+.nav-dropdown-toggle svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2.5; transition: transform .2s; }
+.nav-dropdown-toggle.open svg { transform: rotate(180deg); }
+.dropdown-menu {
+  display: none; position: absolute; top: calc(100% + 10px); left: 50%;
+  transform: translateX(-50%);
+  background: white; border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px; padding: 6px 0; min-width: 160px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10); z-index: 200; list-style: none;
+}
+.dropdown-menu.open { display: block; }
+.dropdown-menu a {
+  display: block; padding: 9px 16px; font-size: 14px; font-weight: 500; color: #555;
+  text-decoration: none; transition: background .15s, color .15s; white-space: nowrap;
+}
+.dropdown-menu a:hover { background: #f5fdf8; color: var(--green); }
+
+.nav-cta {
+  background: var(--green); color: #fff; border: none;
+  padding: 9px 24px; border-radius: 25px;
+  font-size: 13px; font-weight: 700; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: background .2s, transform .15s;
+}
+.nav-cta:hover { background: var(--green-dark); transform: scale(1.04); }
+
+/* ─────────── CAROUSEL WRAPPER ─────────── */
+.carousel {
+  position: fixed;
+  top: var(--nav-h); left: 0; right: 0; bottom: 0;
+  overflow: hidden;
+}
+.slides {
+  display: flex; height: 100%;
+  transition: transform .65s cubic-bezier(.77,0,.175,1);
+}
+
+/* ─────────── SLIDE ─────────── */
+.slide {
+  min-width: 100%; height: 100%;
+  display: flex; align-items: stretch;
+  background: #fff;
+  position: relative;
+}
+
+/* LEFT — tall photo */
+.slide-photo {
+  width: 34%;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 42px 42px 0;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 12px 20px rgba(0, 0, 0, 0.08);
+  background: #e8e8e8;
+}
+.slide-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  display: block;
+
+
+}
+.photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px;
+}
+.photo-placeholder .ph-letter {
+  font-family: 'Sora', sans-serif; font-size: 100px; font-weight: 800;
+  line-height: 1; color: rgba(255,255,255,0.55);
+}
+
+/* RIGHT — content */
+.slide-content {
+  flex: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 56px 72px 80px 64px;
+  opacity: 0; transform: translateX(28px);
+  transition: opacity .5s ease .2s, transform .5s ease .2s;
+}
+.slide.visible .slide-content { opacity: 1; transform: translateX(0); }
+
+.member-name {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 800; line-height: 1.05;
+  color: var(--dark); margin-bottom: 4px;
+}
+.member-role {
+  font-size: 17px; font-weight: 600;
+  color: var(--green); margin-bottom: 34px;
+  line-height: 1.4;
+}
+
+/* info lines */
+.info-line {
+  display: flex; align-items: flex-start; gap: 6px;
+  font-size: 16px; color: #333; margin-bottom: 14px; line-height: 1.65;
+}
+.info-line .lbl { font-weight: 700; color: var(--dark); white-space: nowrap; }
+.info-line .val { color: #444; }
+.info-line .val a { color: #444; text-decoration: none; }
+.info-line .val a:hover { color: var(--green); }
+
+/* quote row */
+.quote-row {
+  display: flex; align-items: center; gap: 18px;
+  margin-top: 32px;
+}
+.quote-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  overflow: hidden; flex-shrink: 0;
+  background: #ddd; border: 3px solid #eee;
+}
+.quote-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.quote-avatar .qa-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 700;
+  color: var(--white);
+}
+.quote-text {
+  font-size: 16px; font-style: italic; color: var(--green-dark);
+  font-weight: 600; line-height: 1.65; max-width: 420px;
+}
+
+/* ─────────── DOT NAV (bottom centre) ─────────── */
+.dot-nav {
+  position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 10px; z-index: 200;
+}
+.nav-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #ccc; border: none; outline: none;
+  cursor: pointer; padding: 0;
+  transition: background .3s, transform .3s, width .3s, border-radius .3s;
+}
+.nav-dot.active {
+  background: var(--green);
+  width: 32px; border-radius: 8px; transform: none;
+}
+.nav-dot:hover:not(.active) { background: #aaa; transform: scale(1.15); }
+
+/* ─────────── SLIDE PHOTO COLOURS (placeholder bg) ─────────── */
+.slide-1 .slide-photo { background: #1c1c1e; }
+.slide-2 .slide-photo { background: #2d3a2e; }
+.slide-3 .slide-photo { background: #1e2a3a; }
+.slide-4 .slide-photo { background: #3a1e1e; }
+.slide-5 .slide-photo { background: #1e2a3a; }
+.slide-6 .slide-photo { background: #2a1e3a; }
+.slide-7 .slide-photo { background: #1e3a2a; }
+
+/* ─────────── RESPONSIVE ─────────── */
+@media (max-width: 860px) {
+  nav { padding: 0 20px; }
+  .nav-links { gap: 18px; }
+  .slide-content { padding: 40px 36px 80px 36px; }
+  .slide-photo { width: 38%; }
+}
+@media (max-width: 620px) {
+  .nav-links { display: none; }
+  .slide { flex-direction: column; }
+  .slide-photo { width: 100%; height: 42%; border-radius: 0 0 32px 32px; }
+  .slide-content { padding: 24px 24px 80px; }
+  .member-name { font-size: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-icon">
+      <a href="index.html"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 75px; aspect-ratio: 1/1;"></a>
+    </div>
+    
+  </div>
+  <ul class="nav-links">
+    <li><a href="student-home.html">Home</a></li>
+    <li><a href="student-opportunities.html">Teams</a></li>
+    <li><a href="marketings.html">Marketing</a></li>
+    <li><a href="student-how-it-works.html">How It Works</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle active">
+        Details
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="contribution.html" class="active">Contribution</a></li>
+        <li><a href="details.html" >More Details</a></li>
+      </ul>
+    </li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='contact.html'">Contact us</button>
+</nav>
+
+<!-- ── DOT NAV ── -->
+<div class="dot-nav" id="dotNav"></div>
+
+<!-- ── CAROUSEL ── -->
+<div class="carousel">
+  <div class="slides" id="slides">
+
+    <!-- SLIDE 1 – Eugene (Founder / CTO) -->
+    <div class="slide slide-1 visible">
+      <div class="slide-photo">
+        <img src="assets/images/eugene.jpeg" alt="Eugene"/>
+        <div class="photo-placeholder">
+          <span class="ph-letter">E</span>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="member-name">Yevhen Hrynenko</div>
+        <div class="member-role">CTO &amp; Team Lead of Web &amp; App Development</div>
+
+        <div class="info-line">
+          <span class="lbl">Student ID:</span>
+          <span class="val">A00084322</span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Email:</span>
+          <span class="val"><a href="mailto:yevhen.hrynenko2@mail.dcu.ie">yevhen.hrynenko2@mail.dcu.ie</a></span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Responsible for:</span>
+          <span class="val">Designing Web Pages and Managing team's GitHub.</span>
+        </div>
+
+        <div class="quote-row">
+          <div class="quote-avatar">
+            <img src="assets/images/eugeneprof.jpeg" alt=""/>
+            <div class="qa-placeholder" style="background:#2ecc71;">E</div>
+          </div>
+          <div class="quote-text">I turn concepts into clickable reality</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide slide-2">
+      <div class="slide-photo">
+        <!-- <img src="assets/images/member2.jpg" alt="Member Name"/> -->
+        <div class="photo-placeholder">
+          <span class="ph-letter">M</span>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="member-name">Beniamin-F-M Szandai</div>
+        <div class="member-role">COO &amp; Team Lead of Creative Media</div>
+
+        <div class="info-line">
+          <span class="lbl">Student ID:</span>
+          <span class="val">A00019697</span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Email:</span>
+          <span class="val"><a href="mailto:beniamin-fineas.szandai2@mail.dcu.ie">beniamin-fineas.szandai2@mail.dcu.ie</a></span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Responsible for:</span>
+          <span class="val"> Collecting Images, Icons and Creating Vactors</span>
+        </div>
+
+        <div class="quote-row">
+          <div class="quote-avatar">
+            <div class="qa-placeholder" style="background:#27ae60;">A</div>
+          </div>
+          <div class="quote-text">Content that clicks. Stories that stick.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide slide-3">
+      <div class="slide-photo">
+        <div class="photo-placeholder">
+          <span class="ph-letter">J</span>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="member-name">Josh Crawford</div>
+        <div class="member-role">CMO &amp; Team Lead for Data Automation</div>
+
+        <div class="info-line">
+          <span class="lbl">Student ID:</span>
+          <span class="val">A00094639</span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Email:</span>
+          <span class="val"><a href="mailto:joshua.crawford2@mail.dcu.ie">joshua.crawford2@mail.dcu.ie</a></span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Responsible for:</span>
+          <span class="val"> Did the analysis of services and calculated the prices</span>
+        </div>
+
+        <div class="quote-row">
+          <div class="quote-avatar">
+            <div class="qa-placeholder" style="background:#3b82f6;">B</div>
+          </div>
+          <div class="quote-text">Less manual. More magical.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide slide-4">
+      <div class="slide-photo">
+        <div class="photo-placeholder">
+          <span class="ph-letter">C</span>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="member-name">Daniil Dorofeyev</div>
+        <div class="member-role">CFO &amp; Team Lead of Digital Marketing</div>
+
+        <div class="info-line">
+          <span class="lbl">Student ID:</span>
+          <span class="val">A00012726</span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Email:</span>
+          <span class="val"><a href="mailto:daniil.dorofeyev2@mail.dcu.ie">daniil.dorofeyev2@mail.dcu.ie</a></span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Responsible for:</span>
+          <span class="val">Add your responsibilities and contributions here.</span>
+        </div>
+
+        <div class="quote-row">
+          <div class="quote-avatar">
+            <div class="qa-placeholder" style="background:#f97316;">C</div>
+          </div>
+          <div class="quote-text">We don’t chase trends—we set them..</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide slide-5">
+      <div class="slide-photo">
+        <img src="assets/images/garv.jpeg" alt="Eugene">
+        <div class="photo-placeholder">
+          <span class="ph-letter">G</span>
+        </div>
+      </div>
+      <div class="slide-content">
+        <div class="member-name">Garv Soni</div>
+        <div class="member-role">CEO &amp; Overviewer of teams</div>
+
+        <div class="info-line">
+          <span class="lbl">Student ID:</span>
+          <span class="val">A00052975</span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Email:</span>
+          <span class="val"><a href="mailto:garv.soni2@mail.dcu.ie">garv.soni2@mail.dcu.ie</a></span>
+        </div>
+        <div class="info-line">
+          <span class="lbl">Responsible for:</span>
+          <span class="val">Designing and Prototying the webpages.</span>
+        </div>
+
+        <div class="quote-row">
+          <div class="quote-avatar">
+            <img src="assets/images/garvprof.jpeg" alt="">
+            <div class="qa-placeholder" style="background:#8b5cf6;">D</div>
+          </div>
+          <div class="quote-text">I create opportunities I once needed.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /slides -->
+</div><!-- /carousel -->
+
+<script>
+  let current = 0;
+  const TOTAL   = document.querySelectorAll('.slide').length;
+  const slidesEl = document.getElementById('slides');
+  const allSlides = document.querySelectorAll('.slide');
+  const dotNav    = document.getElementById('dotNav');
+
+  /* build dots */
+  const dots = [];
+  for (let i = 0; i < TOTAL; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    btn.addEventListener('click', () => goTo(i));
+    dotNav.appendChild(btn);
+    dots.push(btn);
+  }
+
+  function goTo(idx) {
+    allSlides[current].classList.remove('visible');
+    dots[current].classList.remove('active');
+    current = ((idx % TOTAL) + TOTAL) % TOTAL;
+    slidesEl.style.transform = `translateX(-${current * 100}%)`;
+    allSlides[current].classList.add('visible');
+    dots[current].classList.add('active');
+  }
+
+  /* keyboard */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
+  });
+
+  /* touch swipe */
+  let sx = 0;
+  document.addEventListener('touchstart', e => { sx = e.touches[0].clientX; });
+  document.addEventListener('touchend',   e => {
+    const d = sx - e.changedTouches[0].clientX;
+    if (Math.abs(d) > 40) goTo(d > 0 ? current + 1 : current - 1);
+  });
+
+  /* dropdown */
+  const tog = document.querySelector('.nav-dropdown-toggle');
+  const men = document.querySelector('.dropdown-menu');
+  if (tog && men) {
+    tog.addEventListener('click', e => { e.stopPropagation(); tog.classList.toggle('open'); men.classList.toggle('open'); });
+    document.addEventListener('click', () => { tog.classList.remove('open'); men.classList.remove('open'); });
+    men.addEventListener('click', e => e.stopPropagation());
+  }
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

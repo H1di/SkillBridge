@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Businesses</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    
+    :root { --green: #2ecc71; }
+
+    #sb-nav {
+      position: sticky; top: 0; z-index: 100;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0,0,0,0.09);
+      font-family: 'DM Sans', sans-serif;
+    }
+    #sb-nav .sb-nav-logo { display: flex; align-items: center; gap: 6px; }
+    #sb-nav .sb-nav-icon { border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+    #sb-nav .sb-nav-links {
+      display: flex; gap: 28px; list-style: none;
+      align-items: center; margin: 0; padding: 0;
+    }
+    #sb-nav .sb-nav-links a {
+      text-decoration: none; font-size: 14px; font-weight: 500;
+      color: #444; transition: color .2s;
+    }
+    #sb-nav .sb-nav-links a:hover { color: var(--green); }
+    #sb-nav .sb-nav-links a.active { color: var(--green); font-weight: 600; }
+    #sb-nav .sb-nav-dropdown { position: relative; }
+    #sb-nav .sb-nav-dropdown-toggle {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 14px; font-weight: 500; color: #444;
+      cursor: pointer; transition: color .2s;
+      background: none; border: none;
+      font-family: 'DM Sans', sans-serif; padding: 0;
+    }
+    #sb-nav .sb-nav-dropdown-toggle.active { color: var(--green); font-weight: 600; }
+    #sb-nav .sb-nav-dropdown-toggle:hover { color: var(--green); }
+    #sb-nav .sb-nav-dropdown-toggle svg {
+      width: 12px; height: 12px; stroke: currentColor;
+      fill: none; stroke-width: 2.5; transition: transform .2s;
+    }
+    #sb-nav .sb-nav-dropdown-toggle.open svg { transform: rotate(180deg); }
+    #sb-nav .sb-dropdown-menu {
+      display: none;
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%);
+      background: white; border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 10px; padding: 6px 0; min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 200;
+    }
+    #sb-nav .sb-dropdown-menu.open { display: block; }
+    #sb-nav .sb-dropdown-menu li { list-style: none; }
+    #sb-nav .sb-dropdown-menu a {
+      display: block; padding: 9px 16px;
+      font-size: 14px; font-weight: 500; color: #444;
+      text-decoration: none; transition: background .15s, color .15s;
+      white-space: nowrap;
+    }
+    #sb-nav .sb-dropdown-menu a:hover { background: #f5fdf8; color: var(--green); }
+    #sb-nav .sb-dropdown-menu a.active { color: var(--green); font-weight: 600; }
+    #sb-nav .sb-nav-cta {
+      background: var(--green); color: #fff;
+      border: none; padding: 7px 18px; border-radius: 20px;
+      font-size: 12px; font-weight: 700; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      text-decoration: none; display: inline-flex; align-items: center;
+    }
+    .price-range{
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="sb-nav">
+  <div class="sb-nav-logo">
+    <div class="sb-nav-icon">
+      <a href="index.html">
+        <img src="assets/images/Split Panel (Page-0) (1).png" alt="SkillBridge" style="width:75px;height:75px;aspect-ratio:1/1;">
+      </a>
+    </div>
+  </div>
+  <ul class="sb-nav-links">
+    <li><a href="business-home.html" class="active">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="marketings.html">Marketing</a></li>
+    <li><a href="how-it-works.html">How It Works</a></li>
+    <li class="sb-nav-dropdown">
+      <button class="sb-nav-dropdown-toggle" type="button">
+        Details
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <ul class="sb-dropdown-menu">
+        <li><a href="contribution.html">Contribution</a></li>
+        <li><a href="detailsb.html">More Details</a></li>
+      </ul>
+    </li>
+  </ul>
+  <button class="sb-nav-cta" type="button" onclick="location.href='contact.html'">Contact us</button>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main class="page">
+  <div class="container">
+
+    <section class="banner">
+      <div class="banner-grid">
+        <div>
+          <div class="pill">Business Value Proposition</div>
+          <h1 class="hero-title">Affordable digital support without agency pricing and without freelance roulette.</h1>
+          <p class="lead">SkillBridge connects startups, entrepreneurs, and SMEs with supervised student teams that deliver website development, UX/UI design, digital marketing, automation, and business support at lower cost.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="services.html">Start a Project</a>
+            <a class="btn btn-outline" href="contact.html">Contact the Team</a>
+          </div>
+        </div>
+        <div class="banner-side">
+          <div class="mini-panel"><h4>Lower operational costs</h4><p>The platform runs digitally with student teams working remotely, helping SkillBridge stay lean and price competitively.</p></div>
+          <div class="mini-panel"><h4>Supervised quality</h4><p>Founders and supervisors review work before delivery, so businesses do not receive unchecked output.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-3">
+        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">language</span></div><h3>Multilingual support</h3><p>Businesses can access flexible teams able to support different markets and communication needs.</p></article>
+        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">stacked_line_chart</span></div><h3>Below-market pricing</h3><p>SkillBridge positions itself as roughly 50-70% more affordable than traditional digital agencies.</p></article>
+        <article class="feature-card"><div class="icon-badge"><span class="material-symbols-outlined">groups</span></div><h3>Structured delivery</h3><p>Instead of random one-person outsourcing, projects are handled through teams, supervision, and progress tracking.</p></article>
+      </div>
+    </section>
+
+    <section class="section dual-panel">
+      <div class="soft-panel">
+        <h3>Market opportunity</h3>
+        <p>Many small businesses and startups need websites, design, marketing, and data support but do not have the budget for agencies or full-time hires. SkillBridge sits directly in that gap between affordability and reliable supervision.</p>
+        <div class="kpi-strip">
+          <div class="kpi"><strong>99.27%</strong><span>of businesses in the cited Indian market are SMEs</span></div>
+          <div class="kpi"><strong>1.6%</strong><span>own a website in that same market sample</span></div>
+          <div class="kpi"><strong>1%</strong><span>maintain active online presence</span></div>
+          <div class="kpi"><strong>50M</strong><span>new firms created globally each year</span></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h3>What businesses get</h3>
+        <ul class="card-list">
+          <li>Affordable website development and maintenance from €300</li>
+          <li>UX/UI design and creative media support from €80–€550</li>
+          <li>Digital marketing and social setup services from €120, or €250–€450 monthly</li>
+          <li>Automation and other project-based digital work from €250</li>
+          <li>Regular communication, revisions, and long-term support options included in final quoting</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Indicative price ranges</h2>
+      <div class="price-grid">
+        <article class="price-card"><h4>Landing pages</h4><p>Fast web presence for startups and small businesses.</p><div class="price-range">€300–€450</div></article>
+        <article class="price-card"><h4>SEO audits</h4><p>Entry-level review with action points.</p><div class="price-range">€120–€200</div></article>
+        <article class="price-card"><h4>Social setups</h4><p>Account setup and optimisation.</p><div class="price-range">€150–€250</div></article>
+        <article class="price-card"><h4>Video edits</h4><p>Short promotional or social edits.</p><div class="price-range">€80–€150</div></article>
+        <article class="price-card"><h4>Social management</h4><p>Monthly support package.</p><div class="price-range">€250–€450 / month</div></article>
+        <article class="price-card"><h4>Custom builds &amp; automation</h4><p>Larger projects quoted by scope.</p><div class="price-range">€250–€900+</div></article>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy"><em>Bridging Skills and Opportunity</em></div>
+      <div class="footer-icons" aria-label="Social links">
+        <a href="#" aria-label="Twitter"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+        <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
+        <a href="#" aria-label="Instagram"><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a>
+      </div>
+      <div class="footer-copy">© <span id="year"></span> SkillBridge. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+<!-- Dropdown (scoped to #sb-nav) -->
+<script>
+  (function () {
+    var toggle = document.querySelector('#sb-nav .sb-nav-dropdown-toggle');
+    var menu   = document.querySelector('#sb-nav .sb-dropdown-menu');
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function () {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    });
+    menu.addEventListener('click', function (e) { e.stopPropagation(); });
+  })();
+</script>
+
+</body>
+</html>

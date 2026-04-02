@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Students</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+</head>
+
+<body>
+  <style>
+    #sb-nav {
+      position: sticky; top: 0; z-index: 100;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0,0,0,0.09);
+      font-family: 'DM Sans', sans-serif;
+    }
+    #sb-nav .sb-nav-logo { display: flex; align-items: center; gap: 6px; }
+    #sb-nav .sb-nav-icon {
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #sb-nav .sb-nav-icon svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2.2; }
+    #sb-nav .sb-nav-brand { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 13px; color: #0d0d0d; }
+    #sb-nav .sb-nav-brand span { color: #2ecc71; }
+    #sb-nav .sb-nav-links { display: flex; gap: 28px; list-style: none; align-items: center; margin: 0; padding: 0; }
+    #sb-nav .sb-nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: #444; transition: color .2s; }
+    #sb-nav .sb-nav-links a:hover { color: #2ecc71; }
+    #sb-nav .sb-nav-links a.active { color: #2ecc71; font-weight: 600; }
+    #sb-nav .sb-nav-dropdown { position: relative; }
+    #sb-nav .sb-nav-dropdown-toggle {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 14px; font-weight: 500;
+      color: #444; cursor: pointer; transition: color .2s;
+      background: none; border: none; font-family: 'DM Sans', sans-serif; padding: 0;
+    }
+    #sb-nav .sb-nav-dropdown-toggle.active { color: #2ecc71; font-weight: 600; }
+    #sb-nav .sb-nav-dropdown-toggle:hover { color: #2ecc71; }
+    #sb-nav .sb-nav-dropdown-toggle svg {
+      width: 12px; height: 12px; stroke: currentColor;
+      fill: none; stroke-width: 2.5; transition: transform .2s;
+    }
+    #sb-nav .sb-nav-dropdown-toggle.open svg { transform: rotate(180deg); }
+    #sb-nav .sb-dropdown-menu {
+      display: none;
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%);
+      background: white; border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 10px; padding: 6px 0; min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1); z-index: 200;
+    }
+    #sb-nav .sb-dropdown-menu.open { display: block; }
+    #sb-nav .sb-dropdown-menu li { list-style: none; }
+    #sb-nav .sb-dropdown-menu a {
+      display: block; padding: 9px 16px;
+      font-size: 14px; font-weight: 500; color: #444;
+      text-decoration: none; transition: background .15s, color .15s; white-space: nowrap;
+    }
+    #sb-nav .sb-dropdown-menu a:hover { background: #f5fdf8; color: #2ecc71; }
+    #sb-nav .sb-dropdown-menu a.active { color: #2ecc71; font-weight: 600; }
+    #sb-nav .sb-nav-cta {
+      background: #2ecc71; color: #fff;
+      border: none; padding: 7px 18px; border-radius: 20px;
+      font-size: 12px; font-weight: 700; cursor: pointer; font-family: 'DM Sans', sans-serif;
+      text-decoration: none; display: inline-flex; align-items: center;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top left, rgba(19, 236, 164, 0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(15, 23, 42, 0.08), transparent 24%),
+        linear-gradient(180deg, #f8fcfa 0%, #f6f8f7 44%, #edf7f1 100%);
+      color: #0f172a;
+    }
+
+    #sb-nav {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    #sb-nav .sb-nav-cta {
+      background: linear-gradient(135deg, #13eca4 0%, #0f8f68 100%);
+      padding: 9px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      box-shadow: 0 14px 26px rgba(19, 236, 164, 0.22);
+      transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+    }
+
+    #sb-nav .sb-nav-cta:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+      box-shadow: 0 18px 30px rgba(19, 236, 164, 0.28);
+    }
+
+    .page {
+      padding: 34px 0 56px;
+      position: relative;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: blur(10px);
+      opacity: 0.55;
+    }
+
+    .page::before {
+      top: 180px;
+      left: -110px;
+      width: 240px;
+      height: 240px;
+      background: rgba(19, 236, 164, 0.14);
+    }
+
+    .page::after {
+      right: -130px;
+      bottom: 160px;
+      width: 280px;
+      height: 280px;
+      background: rgba(15, 23, 42, 0.08);
+    }
+
+    .page .container {
+      display: grid;
+      gap: 34px;
+    }
+
+    .banner {
+      padding: 52px;
+      border-radius: 36px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: linear-gradient(135deg, #0f172a 0%, #123c2f 38%, #f4fbf7 100%);
+      box-shadow: 0 30px 62px rgba(15, 23, 42, 0.16);
+    }
+
+    .banner::before {
+      width: 360px;
+      height: 360px;
+      top: -130px;
+      left: -100px;
+      background: rgba(19, 236, 164, 0.16);
+    }
+
+    .banner::after {
+      content: "";
+      position: absolute;
+      right: -90px;
+      bottom: -120px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+    }
+
+    .banner-grid {
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .banner-grid > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner-copy {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pill {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #d7fff1;
+    }
+
+    .hero-title {
+      max-width: 760px;
+      color: #ffffff;
+    }
+
+    .lead {
+      max-width: 660px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 19px;
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+      max-width: 720px;
+    }
+
+    .hero-proof-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hero-proof-item .material-symbols-outlined {
+      font-size: 17px;
+      color: #d7fff1;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .hero-actions .btn-primary {
+      background: linear-gradient(135deg, #13eca4 0%, #0f8f68 100%);
+      color: #ffffff;
+      box-shadow: 0 18px 30px rgba(19, 236, 164, 0.24);
+    }
+
+    .hero-actions .btn-outline {
+      border-color: rgba(255, 255, 255, 0.42);
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .hero-actions .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(168px, 1fr));
+      align-items: stretch;
+      gap: 16px;
+      width: min(100%, 620px);
+      margin-top: 0;
+      max-width: 620px;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 120px;
+      padding: 18px 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(6px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-stat strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #ffffff;
+      font-family: 'Sora', sans-serif;
+      font-size: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-stat span {
+      display: block;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .banner-side {
+      align-content: center;
+      gap: 18px;
+    }
+
+    .mini-panel {
+      position: relative;
+      overflow: hidden;
+      border-radius: 24px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 20px 38px rgba(15, 23, 42, 0.12);
+    }
+
+    .mini-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 5px;
+      background: linear-gradient(90deg, #13eca4 0%, #0f8f68 100%);
+    }
+
+    .mini-panel-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: #0f8f68;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .mini-panel-meta .material-symbols-outlined {
+      font-size: 16px;
+    }
+
+    .mini-panel h4 {
+      font-size: 21px;
+      color: #0f172a;
+      margin-bottom: 10px;
+    }
+
+    .mini-panel p {
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    .section-shell {
+      position: relative;
+    }
+
+    .section-surface {
+      padding: 34px;
+      border-radius: 34px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(245, 252, 248, 0.9) 100%);
+      box-shadow: 0 24px 52px rgba(15, 23, 42, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .section-shell + .section-shell {
+      margin-top: 4px;
+    }
+
+    .section-copy {
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      margin-bottom: 14px;
+      border-radius: 999px;
+      background: rgba(19, 236, 164, 0.14);
+      color: #0f8f68;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-head {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 3.5vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      font-weight: 900;
+      color: #0f172a;
+    }
+
+    .section-blurb {
+      max-width: 760px;
+      margin: 0;
+      color: #64748b;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .grid-3 {
+      gap: 26px;
+    }
+
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 252, 247, 0.98) 100%);
+      box-shadow: 0 24px 50px rgba(15, 23, 42, 0.1);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg, #13eca4 0%, #0f8f68 100%);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px rgba(15, 23, 42, 0.14);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 12px;
+      font-size: 24px;
+      color: #0f172a;
+    }
+
+    .feature-card p {
+      color: #475569;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .icon-badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 20px;
+      box-shadow: 0 14px 24px rgba(19, 236, 164, 0.12);
+    }
+
+    .dual-panel {
+      gap: 30px;
+    }
+
+    .soft-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, #edf8f4 0%, #e4f6ee 100%);
+      border: 1px solid #d8eee4;
+      box-shadow: 0 24px 48px rgba(15, 23, 42, 0.1);
+    }
+
+    .soft-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg, #13eca4 0%, #0f8f68 100%);
+    }
+
+    .soft-panel h3 {
+      margin-top: 6px;
+      font-size: 30px;
+      color: #052e16;
+    }
+
+    .soft-panel p {
+      font-size: 17px;
+      color: #475569;
+      line-height: 1.75;
+    }
+
+    .kpi-strip {
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .kpi {
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .kpi strong {
+      font-size: 26px;
+      color: #0f172a;
+    }
+
+    .soft-panel .kpi-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .soft-panel .kpi {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 132px;
+      padding: 22px 20px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 252, 247, 0.96) 100%);
+      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .soft-panel .kpi::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 5px;
+      background: linear-gradient(90deg, rgba(19, 236, 164, 0.95), rgba(15, 143, 104, 0.85));
+    }
+
+    .soft-panel .kpi strong {
+      font-size: 30px;
+      letter-spacing: -0.04em;
+    }
+
+    .soft-panel .kpi span {
+      margin-top: 8px;
+      color: #475569;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .info-card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 28px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfffc 100%);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 24px 48px rgba(15, 23, 42, 0.1);
+    }
+
+    .info-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 6px;
+      background: linear-gradient(90deg, rgba(19, 236, 164, 0.92), rgba(15, 23, 42, 0.75));
+    }
+
+    .info-card h3 {
+      margin-top: 6px;
+      font-size: 30px;
+      color: #0f172a;
+    }
+
+    .card-list {
+      margin-top: 18px;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .card-list li {
+      position: relative;
+      padding: 14px 0 14px 24px;
+      color: #334155;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+    }
+
+    .card-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 23px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #13eca4 0%, #0f8f68 100%);
+      box-shadow: 0 0 0 5px rgba(19, 236, 164, 0.14);
+    }
+
+    .card-list li:last-child {
+      border-bottom: none;
+    }
+
+    .site-footer {
+      margin-top: 0;
+    }
+
+    @media (max-width: 980px) {
+      #sb-nav {
+        padding: 0 22px;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      #sb-nav .sb-nav-links {
+        display: none;
+      }
+
+      .banner {
+        padding: 32px 28px;
+        border-radius: 30px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card,
+      .soft-panel,
+      .info-card {
+        padding: 24px;
+        border-radius: 24px;
+      }
+
+      .section-surface {
+        padding: 26px;
+        border-radius: 28px;
+      }
+
+      .section-head {
+        font-size: clamp(28px, 8vw, 38px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .soft-panel .kpi-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <nav id="sb-nav">
+    <div class="sb-nav-logo">
+      <div class="sb-nav-icon">
+        <a href="index.html"><img src="assets/images/Split Panel (Page-0) (1).png" alt="skillbridge icon" style="width: 75px; height: 75px; aspect-ratio: 1/1;"></a>
+      </div>
+      <span class="sb-nav-brand"></span>
+    </div>
+    <ul class="sb-nav-links">
+      <li><a href="student-home.html" class="active">Home</a></li>
+      <li><a href="student-opportunities.html">Teams</a></li>
+      <li><a href="marketings.html">Marketing</a></li>
+      <li><a href="student-how-it-works.html">How It Works</a></li>
+      <li class="sb-nav-dropdown">
+        <button class="sb-nav-dropdown-toggle" type="button">
+          Details
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <ul class="sb-dropdown-menu">
+          <li><a href="contribution.html">Contribution</a></li>
+          <li><a href="details.html">More Details</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button class="sb-nav-cta" type="button" onclick="location.href='contact.html'">Contact us</button>
+  </nav>
+  
+<main class="page">
+  <div class="container">
+    <section class="banner">
+      <div class="banner-grid">
+        <div class="banner-copy">
+          <div class="pill">Student Value Proposition</div>
+          <h1 class="hero-title">Work on real projects while you study, not random shifts that do nothing for your CV.</h1>
+          <p class="lead">SkillBridge connects early undergraduate students with live client work in website development, UX/UI, digital marketing, automation, and business support. The point is brutal in its simplicity: real experience, real portfolio pieces, and real income.</p>
+          <div class="hero-proof">
+            <div class="hero-proof-item"><span class="material-symbols-outlined">task_alt</span><span>Real briefs, not practice exercises</span></div>
+            <div class="hero-proof-item"><span class="material-symbols-outlined">group</span><span>Team delivery with supervision</span></div>
+            <div class="hero-proof-item"><span class="material-symbols-outlined">description</span><span>Portfolio evidence you can show</span></div>
+          </div>
+          <div class="hero-actions">
+            <div class="hero-buttons">
+              <a class="btn btn-primary" href="contact.html">Apply as a Student</a>
+              <a class="btn btn-outline" href="student-how-it-works.html">See How It Works</a>
+            </div>
+            <div class="hero-stats">
+              <div class="hero-stat"><strong>Paid</strong><span>Project participation built around real client work.</span></div>
+              <div class="hero-stat"><strong>Remote-friendly</strong><span>Flexible delivery model that works around class schedules.</span></div>
+              <div class="hero-stat"><strong>Mentored</strong><span>Structured supervision instead of being left alone to guess.</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="banner-side">
+          <div class="mini-panel"><div class="mini-panel-meta"><span class="material-symbols-outlined">school</span>Built for study</div><h4>Structured growth</h4><p>Students are retained through continuous project opportunities, mentorship, supervision, and professional skill development.</p></div>
+          <div class="mini-panel"><div class="mini-panel-meta"><span class="material-symbols-outlined">schedule</span>Student pace</div><h4>Balanced workload</h4><p>Initial workload is capped around 10 hours per week so study does not collapse just because money is involved.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-shell section-surface">
+      <div class="section-copy">
+        <div class="section-kicker">Student Outcomes</div>
+        <h2 class="section-head">What Students Actually Get</h2>
+        <p class="section-blurb">This is designed to be more than a placement. Students build proof of work, practice team delivery, and gain career evidence while still keeping study as the priority.</p>
+      </div>
+      <div class="grid-3">
+        <article class="feature-card">
+          <div class="icon-badge"><span class="material-symbols-outlined">work_history</span></div>
+          <h3>Career-relevant work</h3>
+          <p>Instead of unrelated part-time work, students build experience directly linked to their field of study and future job interviews.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon-badge"><span class="material-symbols-outlined">collections_bookmark</span></div>
+          <h3>Portfolio before graduation</h3>
+          <p>Each completed project becomes evidence of practical ability, not just another line of vague optimism on a CV.</p>
+        </article>
+        <article class="feature-card">
+          <div class="icon-badge"><span class="material-symbols-outlined">payments</span></div>
+          <h3>Paid participation</h3>
+          <p>Students are compensated for project work, with the model designed for part-time participation alongside academic commitments.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-shell section-surface dual-panel">
+      <div class="soft-panel">
+        <div class="section-kicker">Model Advantage</div>
+        <h3>Why the model matters</h3>
+        <p>Most students struggle to access quality internships. SkillBridge replaces the passive wait for a formal placement with supervised client projects on real briefs. That means earlier exposure to teamwork, deadlines, communication, revisions, and client expectations.</p>
+        <div class="kpi-strip">
+          <div class="kpi"><strong>18-22%</strong><span>of early undergraduates obtain paid internships</span></div>
+          <div class="kpi"><strong>55%</strong><span>report no internship experience at all</span></div>
+          <div class="kpi"><strong>10 hrs</strong><span>target weekly workload at early stage</span></div>
+          <div class="kpi"><strong>Remote</strong><span>project delivery and flexible scheduling</span></div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="section-kicker">Student Benefits</div>
+        <h3>What students gain</h3>
+        <ul class="card-list">
+          <li>Verified project outcomes for interviews and job applications</li>
+          <li>Practical teamwork and project management experience</li>
+          <li>Mentorship and supervision from experienced coordinators</li>
+          <li>Opportunity to move into future mentoring or supervisory roles</li>
+          <li>Income while still progressing academically</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy"><em>Affordable tech. Real experience. Paid learning.</em></div>
+        <div class="footer-icons" aria-label="Social links">
+          <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
+          <a href="#" aria-label="Mail"><span class="material-symbols-outlined" aria-hidden="true">mail</span></a>
+          <a href="#" aria-label="Public"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+        </div>
+        <div class="footer-copy">© <span id="year"></span> SkillBridge. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Details dropdown — click to open/close, click outside to close
+    const sbToggle = document.querySelector('.sb-nav-dropdown-toggle');
+    const sbMenu   = document.querySelector('.sb-dropdown-menu');
+    if (sbToggle && sbMenu) {
+      sbToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        sbToggle.classList.toggle('open');
+        sbMenu.classList.toggle('open');
+      });
+      document.addEventListener('click', function() {
+        sbToggle.classList.remove('open');
+        sbMenu.classList.remove('open');
+      });
+      sbMenu.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+  </script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    const footerYear = document.getElementById('year');
+    if (footerYear && footerYear.parentElement) {
+      footerYear.parentElement.innerHTML = '&copy; <span id="year"></span> SkillBridge. All rights reserved.';
+      document.getElementById('year').textContent = new Date().getFullYear();
+    }
+  </script>
+</body>
+</html>

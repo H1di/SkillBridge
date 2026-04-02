@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillBridge – Details</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --green: #2ecc71;
+            --green-dark: #27ae60;
+            --dark: #0d0d0d;
+            --white: #ffffff;
+            --muted: #666;
+            --border: rgba(0, 0, 0, 0.09);
+            --card-bg: #ffffff;
+            --nav-h: var(--site-header-height);
+        }
+
+        .green {
+            color: var(--green);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(46, 204, 113, 0.16), transparent 26%),
+                radial-gradient(circle at top right, rgba(15, 23, 42, 0.08), transparent 22%),
+                linear-gradient(180deg, #f8fcfa 0%, #f6f8f7 46%, #edf7f1 100%);
+            color: var(--dark);
+            font-size: 17px;
+        }
+
+        div {
+            color: #475569;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        .site-footer {
+            margin-top: 0;
+        }
+
+        h2 {
+            margin-bottom: 40px;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: var(--nav-h);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-icon {
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-icon svg {
+            width: 15px;
+            height: 15px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2.2;
+        }
+
+        .nav-brand {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--dark);
+        }
+
+        .nav-brand span {
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ── DROPDOWN ── */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+            cursor: pointer;
+            transition: color .2s;
+            background: none;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            padding: 0;
+        }
+
+        .nav-dropdown-toggle.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--green);
+        }
+
+        .nav-dropdown-toggle svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            transition: transform .2s;
+        }
+
+        .nav-dropdown-toggle.open svg {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 6px 0;
+            min-width: 160px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            z-index: 200;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 9px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+            text-decoration: none;
+            transition: background .15s, color .15s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5fdf8;
+            color: var(--green);
+        }
+
+        .dropdown-menu a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #13eca4 0%, #0f8f68 100%);
+            color: #fff;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            box-shadow: 0 14px 26px rgba(19, 236, 164, 0.22);
+            transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.03);
+            box-shadow: 0 18px 30px rgba(19, 236, 164, 0.28);
+        }
+
+        /*Hero*/
+        .hero {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            margin: 28px 92px 72px;
+            gap: 30px;
+            padding: 42px 42px 38px;
+            border-radius: 36px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            background: linear-gradient(135deg, #0f172a 0%, #123c2f 38%, #f4fbf7 100%);
+            box-shadow: 0 30px 62px rgba(15, 23, 42, 0.16);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 360px;
+            height: 360px;
+            top: -150px;
+            left: -120px;
+            background: rgba(19, 236, 164, 0.14);
+        }
+
+        .hero::after {
+            width: 280px;
+            height: 280px;
+            right: -80px;
+            bottom: -140px;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .hero-left {
+            display: flex;
+            grid-column: span 6;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-right {
+            grid-column: span 6;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-copy {
+            max-width: 620px;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            margin-bottom: 18px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #d7fff1;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero-left h1 {
+            align-self: center;
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 800;
+            line-height: 1.12;
+            color: #ffffff;
+            margin-bottom: 18px;
+            letter-spacing: -0.04em;
+        }
+
+        .hero-lead {
+            max-width: 540px;
+            margin-bottom: 28px;
+            font-size: 18px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.84);
+        }
+
+        .hero-notes {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            max-width: 560px;
+        }
+
+        .hero-note {
+            padding: 16px 18px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(6px);
+        }
+
+        .hero-note strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #ffffff;
+            font-family: 'Sora', sans-serif;
+            font-size: 16px;
+        }
+
+        .hero-note span {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .hero-img {
+            width: min(100%, 420px);
+            aspect-ratio: 5/6;
+            align-self: stretch;
+            padding: 14px;
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 22px 46px rgba(15, 23, 42, 0.18);
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* WSB */
+        .wsb-section {
+            margin: 0 92px 72px;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            margin-bottom: 16px;
+            border-radius: 999px;
+            background: rgba(19, 236, 164, 0.14);
+            color: #0f8f68;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .section-intro {
+            max-width: 760px;
+            margin: -14px auto 0;
+            text-align: center;
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        .WSB-cards {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
+            margin: 28px 0 0;
+        }
+
+        .wsb-card {
+            grid-column: span 4;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(244, 252, 247, 0.98) 100%);
+            padding: 26px;
+            border-radius: 28px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.1);
+            transition: transform .22s ease, box-shadow .22s ease;
+        }
+
+        .wsb-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 6px;
+            background: linear-gradient(90deg, #13eca4 0%, #0f8f68 100%);
+        }
+
+        .wsb-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.14);
+        }
+
+        .wsb-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .wsb-card .wsb-icon {
+            font-size: 30px;
+            color: var(--green-dark);
+            margin-bottom: 0;
+            flex-shrink: 0;
+        }
+
+        .wsb-icon span {
+            display: grid;
+            place-items: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(19, 236, 164, 0.22) 0%, rgba(19, 236, 164, 0.1) 100%);
+            border-radius: 18px;
+            border: 1px solid rgba(19, 236, 164, 0.16);
+            box-shadow: 0 14px 24px rgba(19, 236, 164, 0.12);
+        }
+
+        .wsb-title {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 0;
+            line-height: 1.2;
+            color: #0f172a;
+        }
+
+        .wsb-content,
+        .ss-card-content,
+        .ss-card-refrence,
+        .svsf-content {
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* Success Story */
+        .story {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            margin: 0 86px 70px;
+            gap: 22px;
+        }
+
+        h2 {
+            grid-column: span 12;
+            text-align: center;
+            font-size: clamp(30px, 3vw, 42px);
+        }
+
+        .ss-cards {
+            grid-column: span 12;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 15px;
+        }
+
+        .ss-card {
+            grid-column: span 4;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border-radius: 28px;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 252, 249, 0.98) 100%);
+            box-shadow: 0 24px 50px rgba(15, 23, 42, 0.1);
+            transition: transform .22s ease, box-shadow .22s ease;
+        }
+
+        .ss-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.14);
+        }
+
+        h4 {
+            text-align: left;
+            margin-top: 0;
+            font-size: 24px;
+            line-height: 1.35;
+        }
+
+        .ss-card>h4 {
+            padding: 26px 26px 0;
+        }
+
+        .ss-card img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            transition: transform .35s ease;
+        }
+
+        .ss-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .ss-card-content {
+            margin-top: 18px;
+            padding: 0 26px 18px;
+            color: #475569;
+        }
+
+        .ss-card-refrence {
+            margin-top: auto;
+            padding: 0 26px 26px;
+            color: #0f172a;
+            font-size: 15px;
+        }
+
+        .ss-card-body {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding-top: 26px;
+        }
+
+        .story-intro {
+            grid-column: span 12;
+            margin-top: -12px;
+            margin-bottom: 8px;
+        }
+
+        /*Skillbridge VS Freelance*/
+        .svsf {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            margin-left: 86px;
+            margin-right: 86px;
+            margin-bottom: 110px;
+            padding: 44px 36px 38px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 34px;
+            border: 1px solid rgba(15, 23, 42, 0.07);
+            background:
+                radial-gradient(circle at top left, rgba(46, 204, 113, 0.18), transparent 34%),
+                linear-gradient(135deg, #ffffff 0%, #f2fbf4 48%, #f8fbf8 100%);
+            box-shadow: 0 26px 60px rgba(15, 23, 42, 0.08);
+        }
+
+        .svsf h2 {
+            grid-column: 1 / -1;
+            margin-bottom: 8px;
+        }
+
+        .svsf-left {
+            grid-column: span 6;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            padding: 78px 24px 24px;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.07);
+        }
+
+        .svsf-right {
+            grid-column: span 6;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            padding: 78px 24px 24px;
+            border: 1px solid rgba(248, 113, 113, 0.18);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.07);
+        }
+
+        .svsf-left::before,
+        .svsf-right::before {
+            position: absolute;
+            top: 22px;
+            left: 24px;
+            padding: 9px 14px;
+            border-radius: 999px;
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .svsf-left::before {
+            content: "SkillBridge";
+            background: rgba(46, 204, 113, 0.14);
+            color: #146c43;
+        }
+
+        .svsf-right::before {
+            content: "Freelance";
+            background: rgba(248, 113, 113, 0.12);
+            color: #9f1239;
+        }
+
+        .svsf-right span {
+            margin-bottom: 0;
+            background: linear-gradient(135deg, #ffffff 0%, #fff6f6 100%);
+            padding: 18px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(248, 113, 113, 0.12);
+            box-shadow: 0 10px 18px rgba(15, 23, 42, 0.05);
+        }
+
+        .svsf-left span {
+            margin-bottom: 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f4fcf6 100%);
+            padding: 18px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(46, 204, 113, 0.14);
+            box-shadow: 0 10px 18px rgba(15, 23, 42, 0.05);
+        }
+
+        .svsf-content {
+            display: block;
+            font-size: 17px;
+            line-height: 1.65;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 0 22px;
+            }
+
+            .hero,
+            .wsb-section {
+                margin-left: 24px;
+                margin-right: 24px;
+            }
+
+            .hero {
+                padding: 28px;
+            }
+
+            .hero-left,
+            .hero-right,
+            .wsb-card {
+                grid-column: 1 / -1;
+            }
+
+            .hero-notes {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+
+            .hero-right {
+                justify-content: flex-start;
+            }
+
+            .story {
+                margin: 0 24px 60px;
+            }
+
+            .ss-card {
+                grid-column: 1 / -1;
+            }
+
+            .svsf {
+                margin-left: 24px;
+                margin-right: 24px;
+                padding: 32px 22px 22px;
+            }
+
+            .svsf-left,
+            .svsf-right {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .story {
+                margin: 0 16px 56px;
+            }
+
+            .hero,
+            .wsb-section {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+
+            .hero {
+                padding: 22px 18px;
+            }
+
+            .hero-left h1 {
+                font-size: clamp(34px, 10vw, 48px);
+            }
+
+            .hero-lead {
+                font-size: 16px;
+            }
+
+            .hero-img {
+                width: 100%;
+            }
+
+            .svsf {
+                margin-left: 16px;
+                margin-right: 16px;
+                padding: 28px 16px 16px;
+            }
+
+            .svsf-left,
+            .svsf-right {
+                padding: 70px 16px 16px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- NavBar -->
+    <nav>
+  <div class="nav-logo">
+    <div class="nav-icon">
+      <a href="index.html"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 75px; aspect-ratio: 1/1;"></a>
+    </div>
+    
+  </div>
+  <ul class="nav-links">
+    <li><a href="student-home.html">Home</a></li>
+    <li><a href="student-opportunities.html">Teams</a></li>
+    <li><a href="marketings.html" class="active">Marketing</a></li>
+    <li><a href="student-how-it-works.html">How It Works</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle">
+        Details
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="contribution.html">Contribution</a></li>
+        <li><a href="details.html">More Details</a></li>
+      </ul>
+    </li>
+  </ul>
+  <button class="nav-cta" onclick="location.href='contact.html'">Contact us</button>
+</nav>
+
+    <!-- Hero -->
+
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-copy">
+                <div class="hero-pill">Student Value Proposition</div>
+                <h1>Targeting<br><span class="green">Early<br>Undergrads</span><br>To Help Them<br>Grow</h1>
+                <p class="hero-lead">SkillBridge helps early undergraduate students earn through meaningful project work,
+                    build real portfolio evidence, and graduate with stronger experience than a typical part-time job
+                    ever gives them.</p>
+                <div class="hero-notes">
+                    <div class="hero-note">
+                        <strong>Earn</strong>
+                        <span>Paid, skill-based work that fits around classes and exams.</span>
+                    </div>
+                    <div class="hero-note">
+                        <strong>Grow</strong>
+                        <span>Mentoring, teamwork, and practical experience employers actually value.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-img">
+                <img src="assets/images/annie-spratt-QckxruozjRg-unsplash.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- WSB -->
+
+    <section class="wsb-section">
+        <h2><span class="green">Why Students</span> Choose SkillBridge</h2>
+        <p class="section-intro">The model is simple: better work than repetitive shifts, better experience than unpaid
+            projects, and better support than trying to figure everything out alone.</p>
+        <div class="WSB-cards">
+            <div class="wsb-card">
+                <div class="wsb-head">
+                    <div class="wsb-icon"><span><i class="fa-solid fa-briefcase"></i></span></div>
+                    <div class="wsb-title">Skilled Part-Time Job</div>
+                </div>
+                <div class="wsb-content">Tired of Traditional Part-Time Jobs? Skip the repetitive shifts and low-skill
+                    work. SkillBridge connects you with meaningful, skill-based opportunities that help you earn, learn,
+                    and grow—all while fitting around your student life.</div>
+            </div>
+            <div class="wsb-card">
+                <div class="wsb-head">
+                    <div class="wsb-icon"><span><i class="fa-solid fa-rocket"></i></span></div>
+                    <div class="wsb-title">Real World Impact</div>
+                </div>
+                <div class="wsb-content">Work on actual business challenges
+                    that matter. No coffee runs, just
+                    impactful contributions to growing
+                    startups which helps in building portfolio and eventually increase graduate employment rate.</div>
+            </div>
+            <div class="wsb-card">
+                <div class="wsb-head">
+                    <div class="wsb-icon"><span><i class="fa-regular fa-clock"></i></span></div>
+                    <div class="wsb-title">Flexible Schedule</div>
+                </div>
+                <div class="wsb-content">Exams coming up? No problem. All our
+                    projects are remote-friendly and
+                    designed to fit around your student
+                    life.</div>
+            </div>
+        </div>
+    </section>
+    <!-- Success Story -->
+    <section class="story">
+        <h2><span class="green">Success</span> Stories of <span class="green">Our Students</span></h2>
+        <p class="section-intro story-intro">Students do not just finish tasks here. They leave with stronger confidence,
+            stronger portfolios, and work they can actually speak about in interviews.</p>
+        <div class="ss-cards">
+            <div class="ss-card">
+                <img src="assets/images/yingchou-han-IJrIeCs3D4g-unsplash.jpg" alt="">
+                <h4 style="color: #2ecc71;">“No More Depressing Part Times!”</h4>
+                <div class="ss-card-content">Now, I don’t have to flip Burgers anymore. I am doing that I was supposed
+                    to do.</div>
+                <div class="ss-card-refrence" style="font-weight: bold;">-- George S, International Student</div>
+            </div>
+            <div class="ss-card">
+                <img src="assets/images/icons8-team-FcLyt7lW5wg-unsplash.jpg" alt="">
+                <h4 style="color: #2ecc71;">“Built Powerful Portfolio!”</h4>
+                <div class="ss-card-content">By working with skill bridge I worked on many real world project which
+                    helped me to make a strong and powerful portfolio.</div>
+                <div class="ss-card-refrence" style="font-weight: bold;">-- Sasha J, 2nd Year Undergrad</div>
+            </div>
+            <div class="ss-card">
+                <img src="assets/images/juan-hilario-3fiztRMJPr8-unsplash.jpg" alt="">
+                <h4 style="color: #2ecc71;">“Flexible Schedules Made It Easy!”</h4>
+                <div class="ss-card-content">Now I don’t have skip classes or stress about exams. Working with
+                    skillbrige gave me full flexibility over my work schedule.</div>
+                <div class="ss-card-refrence" style="font-weight: bold;">-- James G, 3rd Year Undergrad</div>
+            </div>
+
+        </div>
+    </section>
+    <!--SkillBridge VS Freelance-->
+    <section class="svsf">
+        <h2>SkillBridge <span class="green">VS</span> Freelance</h2>
+        <div class="svsf-left">
+            <span class="svsf-content">Fixed Part Time Salary</span>
+            <span class="svsf-content">Mentorship From Team Leads</span>
+            <span class="svsf-content" style="margin-bottom: 0;">Corporate Experience That Helps Securing Job After
+                Graduation</span>
+        </div>
+        <div class="svsf-right">
+            <span class="svsf-content">No Fixed Salary</span>
+            <span class="svsf-content">Independent Work</span>
+            <span class="svsf-content" style="margin-bottom: 0;">No Corporate Experience</span>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-copy"><em>Affordable tech. Real experience. Paid learning.</em></div>
+                <div class="footer-icons" aria-label="Social links">
+                    <a href="#" aria-label="LinkedIn"><span class="material-symbols-outlined" aria-hidden="true">work</span></a>
+                    <a href="#" aria-label="Mail"><span class="material-symbols-outlined" aria-hidden="true">mail</span></a>
+                    <a href="#" aria-label="Public"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+                </div>
+                <div class="footer-copy">&copy; <span id="year"></span> SkillBridge. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+<script>
+    // Details dropdown — click to open/close, click outside to close
+    const toggle = document.querySelector('.nav-dropdown-toggle');
+    const menu = document.querySelector('.dropdown-menu');
+    if (toggle && menu) {
+      toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggle.classList.toggle('open');
+        menu.classList.toggle('open');
+      });
+      document.addEventListener('click', function() {
+        toggle.classList.remove('open');
+        menu.classList.remove('open');
+      });
+      menu.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+  </script>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+  </html>

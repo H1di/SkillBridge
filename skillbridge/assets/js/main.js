@@ -1,9 +1,8 @@
-/* Tiny JS for navigation + contact form UX. */
-
-(function(){
+(function () {
   const drawer = document.querySelector('[data-mobile-drawer]');
   const burger = document.querySelector('[data-burger]');
-  if (burger && drawer){
+
+  if (burger && drawer) {
     burger.addEventListener('click', () => {
       const open = drawer.getAttribute('data-open') === 'true';
       drawer.setAttribute('data-open', String(!open));
@@ -12,11 +11,10 @@
     });
   }
 
-  // Contact form: simple validation + fake submit.
   const form = document.querySelector('[data-contact-form]');
   const toast = document.querySelector('[data-toast]');
 
-  function showToast(message){
+  function showToast(message) {
     if (!toast) return;
     toast.querySelector('.msg').textContent = message;
     toast.classList.add('show');
@@ -24,27 +22,25 @@
     showToast._t = window.setTimeout(() => toast.classList.remove('show'), 3200);
   }
 
-  function setInvalid(el, msg){
+  function setInvalid(el) {
     el.setAttribute('aria-invalid', 'true');
-    el.dataset.error = msg;
     el.style.borderColor = 'rgba(239,68,68,0.9)';
     el.style.boxShadow = '0 0 0 6px rgba(239,68,68,0.12)';
   }
 
-  function clearInvalid(el){
+  function clearInvalid(el) {
     el.removeAttribute('aria-invalid');
-    delete el.dataset.error;
     el.style.borderColor = '';
     el.style.boxShadow = '';
   }
 
-  if (form){
+  if (form) {
     const name = form.querySelector('input[name="name"]');
     const email = form.querySelector('input[name="email"]');
     const purpose = form.querySelector('select[name="purpose"]');
     const message = form.querySelector('textarea[name="message"]');
 
-    [name,email,purpose,message].forEach(el => {
+    [name, email, purpose, message].forEach((el) => {
       if (!el) return;
       el.addEventListener('input', () => clearInvalid(el));
       el.addEventListener('change', () => clearInvalid(el));
@@ -52,35 +48,45 @@
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-
       let ok = true;
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (name && name.value.trim().length < 2){ ok=false; setInvalid(name, 'Enter your full name.'); }
-      if (email && !emailRe.test(email.value.trim())){ ok=false; setInvalid(email, 'Enter a valid email.'); }
-      if (purpose && !purpose.value){ ok=false; setInvalid(purpose, 'Pick a purpose.'); }
-      if (message && message.value.trim().length < 10){ ok=false; setInvalid(message, 'Give us a bit more detail.'); }
+      if (name && name.value.trim().length < 2) {
+        ok = false;
+        setInvalid(name);
+      }
+      if (email && !emailRe.test(email.value.trim())) {
+        ok = false;
+        setInvalid(email);
+      }
+      if (purpose && !purpose.value) {
+        ok = false;
+        setInvalid(purpose);
+      }
+      if (message && message.value.trim().length < 10) {
+        ok = false;
+        setInvalid(message);
+      }
 
-      if (!ok){
-        showToast('Fix the highlighted fields. Humans love typos, servers do not.');
+      if (!ok) {
+        showToast('Please complete the highlighted fields.');
         return;
       }
 
-      // Fake "send".
       const btn = form.querySelector('button[type="submit"]');
-      const prev = btn ? btn.textContent : '';
-      if (btn){
+      const prev = btn ? btn.innerHTML : '';
+      if (btn) {
         btn.disabled = true;
-        btn.textContent = 'Sending…';
+        btn.textContent = 'Sending...';
       }
 
       window.setTimeout(() => {
-        if (btn){
+        if (btn) {
           btn.disabled = false;
-          btn.textContent = prev;
+          btn.innerHTML = prev;
         }
         form.reset();
-        showToast('Message queued (pretend). Wire it to your backend when you feel ambitious.');
+        showToast('Your message has been recorded');
       }, 900);
     });
   }

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Landing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="SkillBridge home">
+          <div class="brand-badge"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 100px; aspect-ratio: 1/1;"></div>
+          <!--<div class="brand-title"></div>-->
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="student-home.html">Students</a>
+          <a href="business-home.html">Businesses</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-primary" href="contact.html">Contact Us</a>
+          <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
+        <a href="student-home.html">Students</a>
+        <a href="business-home.html">Businesses</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+  
+<main class="split">
+  <section>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-icon"><span class="material-symbols-outlined">school</span></div>
+        <h2>For Students</h2>
+        <p>Gain real client experience, build a portfolio, and earn part-time income in work related to your field of study.</p>
+        <a class="btn btn-primary" href="student-home.html">Join SkillBridge</a>
+        <div class="hero-stats">
+          <div class="stat"><span class="big">100%</span><span class="small">PAID PART TIME</span></div>
+          <div class="stat"><span class="big">75%</span><span class="small">STUDENTS NEEDS US</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=80');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="hero-icon"><span class="material-symbols-outlined">business_center</span></div>
+        <h2>For Businesses</h2>
+        <p>Access affordable, multilingual, supervised digital services without agency-level pricing or freelance chaos.</p>
+        <a class="btn btn-outline" href="business-home.html">Request a Project</a>
+        <div class="hero-stats">
+          <div class="stat"><span class="big">50-70%</span><span class="small">MORE AFFORDABLE</span></div>
+          <div class="stat"><span class="big">99.27%</span><span class="small">SMEs IN KEY MARKET</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
