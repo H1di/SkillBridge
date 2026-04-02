@@ -1,0 +1,3 @@
+# SkillBridge currently uses only Python standard library modules.
+# This file exists so deployment platforms that run
+# `pip install -r requirements.txt` continue to work.
