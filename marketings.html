@@ -239,10 +239,12 @@
         /*Hero*/
         .hero {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            margin: 28px 92px 72px;
-            gap: 30px;
-            padding: 42px 42px 38px;
+            grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
+            align-items: center;
+            width: min(1220px, calc(100% - 48px));
+            margin: 28px auto 72px;
+            gap: clamp(24px, 4vw, 42px);
+            padding: clamp(24px, 4vw, 42px);
             border-radius: 36px;
             border: 1px solid rgba(15, 23, 42, 0.08);
             background: linear-gradient(135deg, #0f172a 0%, #123c2f 38%, #f4fbf7 100%);
@@ -275,24 +277,28 @@
             background: rgba(255, 255, 255, 0.12);
         }
 
-        .hero-left {
-            display: flex;
-            grid-column: span 6;
-            align-items: center;
+        .hero-content {
+            display: grid;
+            gap: 24px;
+            min-width: 0;
             position: relative;
             z-index: 1;
         }
 
-        .hero-right {
-            grid-column: span 6;
+        .hero-media {
             display: flex;
             justify-content: flex-end;
+            align-items: stretch;
+            min-width: 0;
             position: relative;
             z-index: 1;
         }
 
         .hero-copy {
-            max-width: 620px;
+            display: grid;
+            gap: 18px;
+            min-width: 0;
+            max-width: 640px;
         }
 
         .hero-pill {
@@ -310,19 +316,16 @@
             text-transform: uppercase;
         }
 
-        .hero-left h1 {
-            align-self: center;
+        .hero-title {
             font-size: clamp(40px, 5vw, 64px);
             font-weight: 800;
             line-height: 1.12;
             color: #ffffff;
-            margin-bottom: 18px;
             letter-spacing: -0.04em;
         }
 
         .hero-lead {
-            max-width: 540px;
-            margin-bottom: 28px;
+            max-width: 60ch;
             font-size: 18px;
             line-height: 1.75;
             color: rgba(255, 255, 255, 0.84);
@@ -330,9 +333,9 @@
 
         .hero-notes {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 16px;
-            max-width: 560px;
+            width: 100%;
         }
 
         .hero-note {
@@ -361,7 +364,7 @@
         .hero-img {
             width: min(100%, 420px);
             aspect-ratio: 5/6;
-            align-self: stretch;
+            margin-left: auto;
             padding: 14px;
             border-radius: 32px;
             background: rgba(255, 255, 255, 0.1);
@@ -676,29 +679,27 @@
                 gap: 16px;
             }
 
-            .hero,
+            .hero {
+                grid-template-columns: 1fr;
+                width: min(100%, calc(100% - 48px));
+                margin-bottom: 60px;
+            }
+
             .wsb-section {
                 margin-left: 24px;
                 margin-right: 24px;
             }
 
-            .hero {
-                padding: 28px;
-            }
-
-            .hero-left,
-            .hero-right,
-            .wsb-card {
-                grid-column: 1 / -1;
-            }
-
             .hero-notes {
-                grid-template-columns: 1fr;
-                max-width: 100%;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             }
 
-            .hero-right {
+            .hero-media {
                 justify-content: flex-start;
+            }
+
+            .hero-img {
+                margin-left: 0;
             }
 
             .story {
@@ -726,7 +727,10 @@
                 margin: 0 16px 56px;
             }
 
-            .hero,
+            .hero {
+                width: min(100%, calc(100% - 32px));
+            }
+
             .wsb-section {
                 margin-left: 16px;
                 margin-right: 16px;
@@ -736,12 +740,16 @@
                 padding: 22px 18px;
             }
 
-            .hero-left h1 {
+            .hero-title {
                 font-size: clamp(34px, 10vw, 48px);
             }
 
             .hero-lead {
                 font-size: 16px;
+            }
+
+            .hero-notes {
+                grid-template-columns: 1fr;
             }
 
             .hero-img {
@@ -800,26 +808,26 @@
     <!-- Hero -->
 
     <section class="hero">
-        <div class="hero-left">
+        <div class="hero-content">
             <div class="hero-copy">
                 <div class="hero-pill">Student Value Proposition</div>
-                <h1>Targeting<br><span class="green">Early<br>Undergrads</span><br>To Help Them<br>Grow</h1>
+                <h1 class="hero-title">Targeting <span class="green">early undergrads</span> to help them grow</h1>
                 <p class="hero-lead">SkillBridge helps early undergraduate students earn through meaningful project work,
                     build real portfolio evidence, and graduate with stronger experience than a typical part-time job
                     ever gives them.</p>
-                <div class="hero-notes">
-                    <div class="hero-note">
-                        <strong>Earn</strong>
-                        <span>Paid, skill-based work that fits around classes and exams.</span>
-                    </div>
-                    <div class="hero-note">
-                        <strong>Grow</strong>
-                        <span>Mentoring, teamwork, and practical experience employers actually value.</span>
-                    </div>
+            </div>
+            <div class="hero-notes">
+                <div class="hero-note">
+                    <strong>Earn</strong>
+                    <span>Paid, skill-based work that fits around classes and exams.</span>
+                </div>
+                <div class="hero-note">
+                    <strong>Grow</strong>
+                    <span>Mentoring, teamwork, and practical experience employers actually value.</span>
                 </div>
             </div>
         </div>
-        <div class="hero-right">
+        <div class="hero-media">
             <div class="hero-img">
                 <img src="assets/images/annie-spratt-QckxruozjRg-unsplash.jpg" alt="">
             </div>
