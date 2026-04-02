@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Create Account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="auth-page">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="SkillBridge home">
+          <div class="brand-badge"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 100px; aspect-ratio: 1/1;"></div>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="student-home.html">Students</a>
+          <a href="business-home.html">Businesses</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-primary" href="profile.html">Profile</a>
+          <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
+        <a href="student-home.html">Students</a>
+        <a href="business-home.html">Businesses</a>
+        <a href="contact.html">Contact</a>
+        <a href="profile.html">Profile</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="container auth-shell auth-shell-wide">
+      <section class="auth-side auth-side-emerald">
+        <div class="pill">Create Account</div>
+        <h1 class="hero-title">Choose your path into SkillBridge and start building a profile that actually fits the platform.</h1>
+        <p class="lead">Students can set the area they want to work in. Businesses can register their company, describe project requests, and track work already in motion.</p>
+        <div class="auth-highlights">
+          <div class="auth-highlight"><span class="material-symbols-outlined">school</span><span>Student profiles aligned to live opportunity areas on the website</span></div>
+          <div class="auth-highlight"><span class="material-symbols-outlined">business_center</span><span>Business accounts ready for project requests and active work tracking</span></div>
+          <div class="auth-highlight"><span class="material-symbols-outlined">shield</span><span>Saved in SQLite so contact and account data persist properly</span></div>
+        </div>
+      </section>
+
+      <section class="auth-card auth-form-card">
+        <div class="form-intro compact">
+          <div class="form-kicker">Account Setup</div>
+          <h2>Build your profile</h2>
+          <p>Pick the account type first, then complete the fields that matter for that profile.</p>
+        </div>
+
+        <form class="form auth-form" data-register-form>
+          <div class="account-choice-grid" data-account-choice>
+            <button type="button" class="account-choice is-active" data-account-option="student">
+              <span class="material-symbols-outlined">school</span>
+              <strong>Student Profile</strong>
+              <small>Work areas, avatar, current project, and growth path.</small>
+            </button>
+            <button type="button" class="account-choice" data-account-option="business">
+              <span class="material-symbols-outlined">apartment</span>
+              <strong>Business Account</strong>
+              <small>Company details, project requests, and work in progress.</small>
+            </button>
+          </div>
+
+          <input type="hidden" name="accountType" value="student" data-account-type-input />
+
+          <div class="form-row">
+            <div>
+              <label for="register-name">Full Name</label>
+              <input class="field" id="register-name" name="fullName" type="text" placeholder="Jane Doe" autocomplete="name" required />
+            </div>
+            <div>
+              <label for="register-email">Email Address</label>
+              <input class="field" id="register-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div>
+              <label for="register-password">Password</label>
+              <input class="field" id="register-password" name="password" type="password" placeholder="At least 8 characters" autocomplete="new-password" required />
+            </div>
+            <div>
+              <label for="register-avatar">Avatar URL <span class="label-soft">Optional</span></label>
+              <input class="field" id="register-avatar" name="avatarUrl" type="url" placeholder="https://example.com/avatar.jpg" />
+            </div>
+          </div>
+
+          <section class="account-section" data-account-panel="student">
+            <div class="section-heading-row">
+              <div>
+                <h3>Student setup</h3>
+                <p>Choose the SkillBridge area you want to work in and optionally note your current project.</p>
+              </div>
+            </div>
+            <div>
+              <label for="register-area">Area of Work</label>
+              <select class="field select" id="register-area" name="areaOfWork" data-work-area-select required>
+                <option value="">Loading options...</option>
+              </select>
+            </div>
+            <div>
+              <label for="register-current-project">Current Project <span class="label-soft">Optional</span></label>
+              <input class="field" id="register-current-project" name="currentProject" type="text" placeholder="Portfolio landing page for a startup" />
+            </div>
+          </section>
+
+          <section class="account-section is-hidden" data-account-panel="business">
+            <div class="section-heading-row">
+              <div>
+                <h3>Business setup</h3>
+                <p>Capture the company name, the request that brought you here, and current project work.</p>
+              </div>
+            </div>
+            <div>
+              <label for="register-company">Company Name</label>
+              <input class="field" id="register-company" name="companyName" type="text" placeholder="Acme Studio" />
+            </div>
+            <div>
+              <label for="register-project-request">Request for Project <span class="label-soft">Optional</span></label>
+              <textarea class="field" id="register-project-request" name="projectRequest" placeholder="We need help with a new website, social setup, and launch support."></textarea>
+            </div>
+            <div>
+              <label for="register-current-projects">Projects Currently in Work <span class="label-soft">Optional</span></label>
+              <textarea class="field" id="register-current-projects" name="currentProjects" placeholder="One project per line&#10;Website redesign&#10;SEO audit"></textarea>
+            </div>
+          </section>
+
+          <button class="btn btn-primary submit" type="submit">
+            <span class="material-symbols-outlined" aria-hidden="true">person_add</span>
+            Create Account
+          </button>
+        </form>
+
+        <div class="auth-inline-note">
+          Already registered?
+          <a href="login.html">Log in</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" data-toast role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span class="msg">Account created.</span></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="profile-page">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="SkillBridge home">
+          <div class="brand-badge"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 100px; aspect-ratio: 1/1;"></div>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="student-home.html">Students</a>
+          <a href="business-home.html">Businesses</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-primary" href="contact.html">Contact Us</a>
+          <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
+        <a href="student-home.html">Students</a>
+        <a href="business-home.html">Businesses</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="profile-main">
+    <div class="container">
+      <section class="profile-hero">
+        <div class="pill">Profile Hub</div>
+        <h1 class="hero-title">One place for account details, current work, and the SkillBridge direction attached to your profile.</h1>
+        <p class="lead">Students get a profile built around work area, avatar, and current project. Businesses get a profile shaped around company identity, project requests, and active work in progress.</p>
+      </section>
+
+      <div data-profile-root class="profile-root">
+        <section class="profile-empty-state">
+          <div class="card profile-empty-card">
+            <div class="form-intro compact">
+              <div class="form-kicker">Profile Access</div>
+              <h2>Check your account status</h2>
+              <p>The page will show account options if you are signed out, or your full profile if you are already logged in.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast" data-toast role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span class="msg">Profile updated.</span></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillBridge | Log In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="auth-page auth-page-soft">
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="SkillBridge home">
+          <div class="brand-badge"><img src="assets/images/Split Panel (Page-0) (1).png" alt="" style="width: 100px; aspect-ratio: 1/1;"></div>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="student-home.html">Students</a>
+          <a href="business-home.html">Businesses</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <a class="btn btn-primary" href="register.html">Create Account</a>
+          <button class="burger" type="button" data-burger aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-drawer" data-mobile-drawer data-open="false" aria-label="Mobile menu">
+        <a href="student-home.html">Students</a>
+        <a href="business-home.html">Businesses</a>
+        <a href="contact.html">Contact</a>
+        <a href="register.html">Create Account</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="container auth-shell auth-shell-compact">
+      <section class="auth-side auth-side-light">
+        <div class="pill">Log In</div>
+        <h1 class="hero-title">Pick up where you left off and jump straight back into your SkillBridge profile.</h1>
+        <p class="lead">Students can return to their work area and current project view. Businesses can reopen project requests and active work tracking.</p>
+      </section>
+
+      <section class="auth-card auth-form-card">
+        <div class="form-intro compact">
+          <div class="form-kicker">Welcome Back</div>
+          <h2>Log in to your account</h2>
+          <p>Use the email and password from the account you already created.</p>
+        </div>
+
+        <form class="form auth-form" data-login-form>
+          <div>
+            <label for="login-email">Email Address</label>
+            <input class="field" id="login-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required />
+          </div>
+          <div>
+            <label for="login-password">Password</label>
+            <input class="field" id="login-password" name="password" type="password" placeholder="Your password" autocomplete="current-password" required />
+          </div>
+          <button class="btn btn-primary submit" type="submit">
+            <span class="material-symbols-outlined" aria-hidden="true">login</span>
+            Log In
+          </button>
+        </form>
+
+        <div class="auth-inline-note">
+          Need an account?
+          <a href="register.html">Create account</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" data-toast role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span class="msg">Logged in.</span></div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
