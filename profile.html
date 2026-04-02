@@ -39,26 +39,45 @@
   </header>
 
   <main class="profile-main">
-    <div class="container">
+    <div class="container profile-shell">
       <section class="profile-hero">
-        <div class="pill">Profile Hub</div>
-        <h1 class="hero-title">One place for account details, current work, and the SkillBridge direction attached to your profile.</h1>
-        <p class="lead">Students get a profile built around work area, avatar, and current project. Businesses get a profile shaped around company identity, project requests, and active work in progress.</p>
+        <div class="pill">Account Center</div>
+        <h1 class="hero-title">Manage your SkillBridge profile, current work, and the next step for your account in one place.</h1>
+        <p class="lead">Students can keep their work area and profile details current. Businesses can update company information, create project requests, and track live work without leaving this page.</p>
+        <div class="profile-hero-points">
+          <div class="profile-hero-point"><span class="material-symbols-outlined" aria-hidden="true">account_circle</span><span>Shared account access from every header</span></div>
+          <div class="profile-hero-point"><span class="material-symbols-outlined" aria-hidden="true">edit_square</span><span>Editable profile details for both account types</span></div>
+          <div class="profile-hero-point"><span class="material-symbols-outlined" aria-hidden="true">work_history</span><span>Project status and request tracking in one view</span></div>
+        </div>
       </section>
 
       <div data-profile-root class="profile-root">
         <section class="profile-empty-state">
-          <div class="card profile-empty-card">
+          <div class="card profile-empty-card profile-loading-card">
             <div class="form-intro compact">
               <div class="form-kicker">Profile Access</div>
-              <h2>Check your account status</h2>
-              <p>The page will show account options if you are signed out, or your full profile if you are already logged in.</p>
+              <h2>Preparing your account view</h2>
+              <p>We’ll show quick account actions here if you are signed out, or load your saved dashboard if you are already logged in.</p>
             </div>
           </div>
         </section>
       </div>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-copy"><em>Affordable tech. Real experience. Paid learning.</em></div>
+        <div class="footer-icons" aria-label="SkillBridge links">
+          <a href="student-home.html" aria-label="Students"><span class="material-symbols-outlined" aria-hidden="true">school</span></a>
+          <a href="business-home.html" aria-label="Businesses"><span class="material-symbols-outlined" aria-hidden="true">business_center</span></a>
+          <a href="contact.html" aria-label="Contact"><span class="material-symbols-outlined" aria-hidden="true">mail</span></a>
+        </div>
+        <div class="footer-copy">SkillBridge profile hub</div>
+      </div>
+    </div>
+  </footer>
 
   <div class="toast" data-toast role="status" aria-live="polite"><span class="dot" aria-hidden="true"></span><span class="msg">Profile updated.</span></div>
 

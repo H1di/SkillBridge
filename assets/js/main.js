@@ -145,6 +145,14 @@
     return parts.map((part) => part[0].toUpperCase()).join('');
   }
 
+  function getShortName(name) {
+    const parts = String(name || '')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    return parts.length ? parts[0] : 'Account';
+  }
+
   function areaLabel(key) {
     const match = state.workAreas.find((item) => item.key === key);
     return match ? match.label : 'Not selected yet';
@@ -567,6 +575,8 @@
   function closeAuthMenus() {
     document.querySelectorAll('.site-auth[data-open="true"]').forEach((menu) => {
       menu.setAttribute('data-open', 'false');
+      const trigger = menu.querySelector('.auth-trigger');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
     });
   }
 
@@ -579,22 +589,26 @@
     const trigger = document.createElement('button');
     trigger.type = 'button';
     trigger.className = 'auth-trigger';
+    trigger.setAttribute('aria-haspopup', 'true');
+    trigger.setAttribute('aria-expanded', 'false');
 
     if (user) {
       trigger.innerHTML = [
         avatarMarkup(user, 'auth-avatar'),
         '<span class="auth-trigger-label">',
-        '<span>' + escapeHtml(user.fullName) + '</span>',
+        '<span class="auth-trigger-title">' + escapeHtml(getShortName(user.fullName)) + '</span>',
         '<span class="auth-trigger-subtext">' + escapeHtml(user.accountType === 'student' ? 'Student profile' : 'Business account') + '</span>',
         '</span>',
+        '<span class="material-symbols-outlined auth-trigger-caret" aria-hidden="true">expand_more</span>',
       ].join('');
     } else {
       trigger.innerHTML = [
         '<span class="auth-avatar"><span class="material-symbols-outlined" aria-hidden="true">person</span></span>',
         '<span class="auth-trigger-label">',
-        '<span>Profile</span>',
-        '<span class="auth-trigger-subtext">Create account or log in</span>',
+        '<span class="auth-trigger-title">Account</span>',
+        '<span class="auth-trigger-subtext">Log in or create account</span>',
         '</span>',
+        '<span class="material-symbols-outlined auth-trigger-caret" aria-hidden="true">expand_more</span>',
       ].join('');
     }
 
@@ -626,6 +640,7 @@
       const isOpen = wrapper.getAttribute('data-open') === 'true';
       closeAuthMenus();
       wrapper.setAttribute('data-open', String(!isOpen));
+      trigger.setAttribute('aria-expanded', String(!isOpen));
     });
 
     menu.addEventListener('click', async (event) => {
@@ -1079,7 +1094,11 @@
       '<div class="form-intro compact">',
       '<div class="form-kicker">Profile Access</div>',
       '<h2>Create account or log in</h2>',
-      '<p>If you are not logged in, the profile page gives you exactly the two account options you asked for.</p>',
+      '<p>Use the account menu in the header or the quick actions below to open your SkillBridge account.</p>',
+      '</div>',
+      '<div class="profile-guest-highlights">',
+      '<div class="profile-guest-highlight"><span class="material-symbols-outlined" aria-hidden="true">school</span><span>Students can set their work area and keep their profile details current.</span></div>',
+      '<div class="profile-guest-highlight"><span class="material-symbols-outlined" aria-hidden="true">apartment</span><span>Businesses can manage company details, project requests, and active work in one place.</span></div>',
       '</div>',
       '<div class="profile-guest-actions">',
       '<a class="btn btn-primary" href="' + escapeHtml(pageHref('register.html')) + '">Create Account</a>',
