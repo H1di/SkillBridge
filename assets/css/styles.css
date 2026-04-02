@@ -944,8 +944,24 @@ canvas{
   body > nav:first-of-type .dropdown-menu,
   body > nav:first-of-type .sb-dropdown-menu,
   #sb-nav .sb-dropdown-menu{
-    left: 0 !important;
+    position: fixed !important;
+    top: calc(var(--site-header-height) + 10px) !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    max-height: min(60vh, 360px) !important;
+    overflow-y: auto !important;
     transform: none !important;
+    border-radius: 18px !important;
+    z-index: 650 !important;
+  }
+
+  body > nav:first-of-type .nav-dropdown,
+  body > nav:first-of-type .sb-nav-dropdown,
+  #sb-nav .sb-nav-dropdown{
+    position: static !important;
   }
 
   .hero-stats,
