@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkillBridge – Details</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --green: #2ecc71;
+            --green-dark: #27ae60;
+            --dark: #0d0d0d;
+            --white: #ffffff;
+            --muted: #666;
+            --border: rgba(0, 0, 0, 0.09);
+            --card-bg: #ffffff;
+            --nav-h: 56px;
+        }
+
+        .green {
+            color: var(--green);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f7f9f7;
+            color: var(--dark);
+        }
+
+        div {
+            color: #475569;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            margin-bottom: 40px;
+        }
+
+        /* ── NAVBAR ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: var(--nav-h);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-icon {
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-icon svg {
+            width: 15px;
+            height: 15px;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2.2;
+        }
+
+        .nav-brand {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--dark);
+        }
+
+        .nav-brand span {
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .nav-links a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* ── DROPDOWN ── */
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .nav-dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+            cursor: pointer;
+            transition: color .2s;
+            background: none;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            padding: 0;
+        }
+
+        .nav-dropdown-toggle.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .nav-dropdown-toggle:hover {
+            color: var(--green);
+        }
+
+        .nav-dropdown-toggle svg {
+            width: 12px;
+            height: 12px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.5;
+            transition: transform .2s;
+        }
+
+        .nav-dropdown-toggle.open svg {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 6px 0;
+            min-width: 160px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            z-index: 200;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            list-style: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 9px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #444;
+            text-decoration: none;
+            transition: background .15s, color .15s;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f5fdf8;
+            color: var(--green);
+        }
+
+        .dropdown-menu a.active {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            background: var(--green);
+            color: #fff;
+            border: none;
+            padding: 7px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /*Hero*/
+        .hero {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            margin: 20px 70px 60px 70px;
+            gap: 30px;
+        }
+
+        .hero-left {
+            display: flex;
+            grid-column: span 6;
+            align-items: center;
+        }
+
+        .hero-right {
+            grid-column: span 6;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-left h1 {
+            align-self: center;
+            font-size: clamp(30px, 4vw, 50px);
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+
+        .hero-img {
+            width: 70%;
+            aspect-ratio: 1/1;
+            align-self: flex-end;
+        }
+
+        .hero img {
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* WSB */
+        .WSB-cards {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 30px;
+            margin: 0 20px 0 20px;
+        }
+
+        .wsb-card {
+            grid-column: span 4;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+
+        .wsb-card .wsb-icon {
+            font-size: xx-large;
+            color: var(--green-dark);
+            margin-bottom: 15px;
+        }
+
+        .wsb-icon span {
+            background-color: #a6f0c5;
+            border-radius: 5px;
+            padding: 1px 5px 1px 5px;
+        }
+
+        .wsb-title {
+            font-size: large;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* Success Story */
+        .story {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        h2 {
+            grid-column: span 12;
+            text-align: center;
+        }
+
+        .ss-cards {
+            grid-column: span 12;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 15px;
+        }
+
+        .ss-card {
+            grid-column: span 4;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+
+
+        }
+
+        h4 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .ss-card img {
+            width: 100%;
+            aspect-ratio: 3/2;
+        }
+
+        .ss-card-content {
+            margin-top: 20px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .ss-card-refrence {
+            margin-top: 20px;
+            margin-top: auto;
+            padding: 0 20px 20px 20px;
+        }
+
+        /*Skillbridge VS Freelance*/
+        .svsf {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+
+        .svsf-left {
+            grid-column: span 6;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid;
+        }
+
+        .svsf-right {
+            grid-column: span 6;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid;
+        }
+
+        .svsf-right span {
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 15px;
+        }
+
+        .svsf-left span {
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- NavBar -->
+    <nav>
+        <div class="nav-logo">
+            <div class="nav-icon">
+                <a href="index.html"><img src="assets/images/Split Panel (Page-0) (1).png" alt=""
+                        style="width: 75px; aspect-ratio: 1/1;"></a>
+            </div>
+
+        </div>
+        <ul class="nav-links">
+            <li><a href="business-home.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="marketingb.html" class="active">Marketing</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li class="nav-dropdown">
+                <button class="nav-dropdown-toggle">
+                    Details
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="contribution.html">Contribution</a></li>
+                    <li><a href="detailsb.html">More Details</a></li>
+                </ul>
+            </li>
+        </ul>
+        <button class="nav-cta" onclick="location.href='contact.html'">Contact us</button>
+    </nav>
+
+    <!-- Hero -->
+
+    <section class="hero">
+        <div class="hero-left">
+            <h1>Targeting<br><span class="green">Startups<br>&amp; SMEs</span><br>To Help Them<br>Grow</h1>
+        </div>
+        <div class="hero-right">
+            <div class="hero-img">
+                <img src="assets/images/campaign-creators-gMsnXqILjp4-unsplash.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <!-- WSB -->
+
+    <section>
+        <div class="WSB-cards">
+            <div class="wsb-card">
+                <div class="wsb-icon"><span><i class="fa-solid fa-briefcase"></i></span></div>
+                <div class="wsb-title">Scalable Support</div>
+                <div class="wsb-content">Scale your operations effortlessly as your business grows. Take on more work
+                    without the burden of hiring or onboarding—flexible support that expands with your needs, when you
+                    need it.</div>
+            </div>
+            <div class="wsb-card">
+                <div class="wsb-icon"><span><i class="fa-solid fa-wallet"></i></span></div>
+                <div class="wsb-title">Cost-Effective Solutions</div>
+                <div class="wsb-content">Get high-quality results at 50–70% lower cost. Designed for startups, our
+                    solutions deliver maximum impact without stretching your budget—so you can scale smarter and grow
+                    faster.</div>
+            </div>
+            <div class="wsb-card">
+                <div class="wsb-icon"><span><i class="fa-regular fa-clock"></i></span></div>
+                <div class="wsb-title">Fast Project Delivery</div>
+                <div class="wsb-content">Deliver fast, high-impact solutions for real startup clients. No fluff—just
+                    focused execution on challenges that matter, helping startups grow, scale, and move from idea to
+                    results quickly.</div>
+            </div>
+        </div>
+    </section>
+    <!-- Success Story -->
+    <section class="story">
+        <h2><span class="green">Success</span> Stories of <span class="green">Our Students</span></h2>
+        <div class="ss-cards">
+            <div class="ss-card">
+                <img src="assets/images/christina-wocintechchat-com-m-0Zx1bDv5BNY-unsplash.jpg" alt="">
+                <h4 style="color: #2ecc71;">“Say Goodbye To Budget-Disturbing Prices!”</h4>
+                <div class="ss-card-content">Now, I don’t have to worry about the high service charges because
+                    SkillBridge exists.</div>
+                <div class="ss-card-refrence" style="font-weight: bold;">-- Robin N, Founder of Aerchio</div>
+            </div>
+            <div class="ss-card">
+                <img src="assets/images/bruce-mars-xj8qrWvuOEs-unsplash.jpg" alt="">
+                <h4 style="color: #2ecc71;">“Premium Quality I Can Trust!”</h4>
+                <div class="ss-card-content">SkillBridge's services are of high quality. Their final supervision gained
+                    my utmost trust.</div>
+                <div class="ss-card-refrence" style="font-weight: bold;">-- Zoro R, Founder of HunterTech</div>
+            </div>
+            <div class="ss-card">
+                <img src="assets/images/matthew-reyes--C-jTjc0g7I-unsplash.jpg" alt="">
+                <h4 style="color: #2ecc71;">“Now I can Explain In My Language Anywhere”</h4>
+                <div class="ss-card-content">SkillBridge's Multilingual support made explanation very easy because of
+                    that I got a fully customised solutions for my startup.</div>
+                <div class="ss-card-refrence" style="font-weight: bold;">-- Luffy D, Strawhats Founder</div>
+            </div>
+
+        </div>
+    </section>
+    <!--SkillBridge VS Freelance-->
+    <section class="svsf">
+        <h2>SkillBridge <span class="green">VS</span> Freelance</h2>
+        <div class="svsf-left">
+            <span class="svsf-content">50% - 70% Cheaper</span>
+            <span class="svsf-content">Relible and Faster</span>
+            <span class="svsf-content" style="margin-bottom: 0;">Multiple Supervised Teams</span>
+        </div>
+        <div class="svsf-right">
+            <span class="svsf-content">More Expensive</span>
+            <span class="svsf-content">Risky and Time Consuming</span>
+            <span class="svsf-content" style="margin-bottom: 0;">Individually Person</span>
+        </div>
+    </section>
+</body>
+<script>
+    // Details dropdown — click to open/close, click outside to close
+    const sbToggle = document.querySelector('.sb-nav-dropdown-toggle');
+    const sbMenu   = document.querySelector('.sb-dropdown-menu');
+    if (sbToggle && sbMenu) {
+      sbToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        sbToggle.classList.toggle('open');
+        sbMenu.classList.toggle('open');
+      });
+      document.addEventListener('click', function() {
+        sbToggle.classList.remove('open');
+        sbMenu.classList.remove('open');
+      });
+      sbMenu.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+  </script>
+  </html>
